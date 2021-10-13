@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.hamsh5312.solution.Wpost.dao.W_PostDAO">
+ 
+ 	<insert id="insertWPost" parameterType="map">
+ 	
+ 		INSERT INTO `w_post`
+ 		(
+ 			`userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		) VALUES(
+ 		
+	 		#{userId}
+	 		, #{userName}
+	 		, #{subject}
+	 		, #{content}
+	 		, #{imagePath}
+	 		, #{sBox}
+	 		, now()
+	 		, now()
+ 		
+ 		)
+ 	</insert>
+ 
+ 
+ 
+ </mapper>

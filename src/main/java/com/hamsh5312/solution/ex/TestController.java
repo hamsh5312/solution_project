@@ -1,4 +1,4 @@
-package com.hamsh5312.ex.hello;
+package com.hamsh5312.solution.ex;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
