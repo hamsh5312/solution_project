@@ -35,22 +35,23 @@
 				<!-- MIME text/html image/jpeg -->
 				<div class="d-flex justify-content-between my-3">
 					<input type="file" accept="image/*" id="fileInput" multiple>
-					<select name="worry" style="width:80px;">
+					<select name="worry" style="width:100px;">
 						<option value="study">공부</option>
 						<option value="exercise">운동</option>
 						<option value="food">음식</option>
 						<option value="hobby">취미</option>
 						<option value="game">놀이</option>
 						<option value="startUp">창업</option>
-						<option selected value="other" >기타</option>
+						<option value="other" >기타</option>
+						<option selected value="all" >기타</option>
 					</select>
 				</div>
 				<div class="d-flex justify-content-between my-3">
-					<a href="/post/worryListView" class="btn btn-info">목록으로</a>
+					<a href="/post/worry_list_view" class="btn btn-info">목록으로</a>
 					<button type="button" class="btn btn-success" id="saveBtn" style="width:80px;">저장</button>
 				</div>
 			</div>
-		</section>		
+		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		

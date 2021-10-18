@@ -8,8 +8,22 @@
 
 header{
 	height:80px;
-	
+	margin:auto;
 }
+
+.header-left{
+	width:200px;
+	height:80px;
+}
+.header-center{
+	width:600px;
+	height:80px;
+}
+.header-right{
+	width:200px;
+	height:80px;
+}
+
 
 .login-img{
 	width:400px;
@@ -32,4 +46,5 @@ header{
 
 footer{
 	height:80px;
+	margin:auto;
 }

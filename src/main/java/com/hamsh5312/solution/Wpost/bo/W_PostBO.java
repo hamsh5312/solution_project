@@ -1,10 +1,13 @@
 package com.hamsh5312.solution.Wpost.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hamsh5312.solution.Wpost.dao.W_PostDAO;
+import com.hamsh5312.solution.Wpost.model.W_Post;
 import com.hamsh5312.solution.common.FileManagerService;
 
 @Service
@@ -29,4 +32,11 @@ public class W_PostBO {
 		
 	}
 	
+	public List<W_Post> getPostList(){
+		return w_postDAO.selectPostList();
+	}
+	
+	public W_Post getWorryPost(int id) {
+		return w_postDAO.selectWorryPost(id);
+	}
 }
