@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.hamsh5312.solution.post.dao.PostDAO">
+ 
+ 	<insert id="insertPost" parameterType="map">
+ 		INSERT INTO `post`
+ 		(
+ 			`userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		) VALUES(
+ 		
+ 		#{userId}
+ 		, #{userName}
+ 		, #{subject}
+ 		, #{content}
+ 		, #{imagePath}
+ 		, #{sBox}
+ 		, now()
+ 		, now()
+ 		)
+ 		
+ 	</insert>
+ 
+ 	<select id="selectWorryList" resultType="com.hamsh5312.solution.post.model.Post">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		ORDER BY `id` DESC	
+		
+ 	</select>
+ 
+ 	<select id="selectPost" resultType="com.hamsh5312.solution.post.model.Post"
+ 	parameterType="int">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{id}
+ 		
+ 	</select>
+ 
+ 
+ 	<select id="selectDeletePost" resultType="com.hamsh5312.solution.post.model.Post"
+ 	parameterType="map">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{id}
+ 			AND `userId` = #{userId}
+ 	
+ 	</select>
+ 	
+ 	<delete id="deletePost" parameterType="map">
+ 	
+ 		DELETE
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{id }
+ 			AND `userId` = #{userId }
+ 			
+ 	</delete>
+ 	
+ 	
+ 	<update id="updatePost" parameterType="map">
+ 		
+ 		UPDATE
+ 			`post`
+ 		SET
+ 			`subject` = #{subject }
+ 			, `content` = #{content }
+ 		WHERE 
+ 			`id` = #{id}
+ 			AND `userId` = #{userId }
+ 	
+ 	</update>
+ 	
+ 	
+ 	<select id="selectWorry" resultType="com.hamsh5312.solution.post.model.Post"
+ 	parameterType="int">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{id}
+ 	
+ 	</select>
+ 	
+ 	
+ </mapper>

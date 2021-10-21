@@ -1,16 +1,14 @@
-package com.hamsh5312.solution.Wpost.model;
+package com.hamsh5312.solution.post.comment.model;
 
 import java.util.Date;
 
-public class W_Post {
+public class Comment {
 
 	private int id;
+	private int postId;
 	private int userId;
 	private String userName;
-	private String subject;
 	private String content;
-	private String imagePath;
-	private String sBox;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -19,6 +17,12 @@ public class W_Post {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getPostId() {
+		return postId;
+	}
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	public int getUserId() {
 		return userId;
@@ -32,29 +36,11 @@ public class W_Post {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-	public String getsBox() {
-		return sBox;
-	}
-	public void setsBox(String sBox) {
-		this.sBox = sBox;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -68,8 +54,6 @@ public class W_Post {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
 	
 	
 }

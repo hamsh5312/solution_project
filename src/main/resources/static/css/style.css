@@ -1,7 +1,9 @@
 
 #wrap{
-	width:1000px;
-	height:800px;
+	width:1200px;
+	/*
+		height:800px;
+	*/
 	margin:auto;
 	
 }
@@ -11,8 +13,18 @@ header{
 	margin:auto;
 }
 
+.nav > .nav-item > .nav-link {
+    background-color:purple; 
+    color:white; 
+    font-size:17px;
+    font-weight: bold;
+}
+.nav > .nav-item > a:hover {
+    background-color:rgb(238, 156, 75);
+}
+
 .header-left{
-	width:200px;
+	width:300px;
 	height:80px;
 }
 .header-center{
@@ -20,7 +32,7 @@ header{
 	height:80px;
 }
 .header-right{
-	width:200px;
+	width:300px;
 	height:80px;
 }
 
@@ -41,8 +53,6 @@ header{
 	height:500px;
 	margin:auto;
 }
-
-
 
 footer{
 	height:80px;
