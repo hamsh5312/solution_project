@@ -55,7 +55,40 @@
 		WHERE
 			`postId` = #{postId}
 	</delete>
- 
+ 	
+ 	<select id="selectCommentList" resultType="com.hamsh5312.solution.post.comment.model.Comment">
+ 		
+ 		SELECT
+ 			`id`
+ 			, `postId`
+ 			, `userId`
+ 			, `userName`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`comment`
+ 	
+ 	</select>
+ 	
+ 	<select id="selectComment" resultType="com.hamsh5312.solution.post.comment.model.Comment"
+ 	parameterType="int">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `postId`
+ 			, `userId`
+ 			, `userName`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`id` = #{id}
+ 		
+ 	
+ 	</select>
  	
  
  </mapper>

@@ -8,12 +8,14 @@
  	<insert id="insertRecommend" parameterType="map">
 	 	INSERT INTO `recommend`
 	 	(	
-	 		`commentId`
+	 		`commentCreateUserName`
+	 		, `commentId`
 	 		, `userId`
 	 		, `createdAt`
 	 		
 	 	) VALUES(
-	 		#{commentId}
+	 		#{commentCreateUserName}
+	 		, #{commentId}
 	 		, #{userId }
 	 		, now()
 	 	)
@@ -26,9 +28,10 @@
  		FROM
  			`recommend`
  		WHERE
- 			`commentId` = #{commentId}
+ 			`commentCreateUserName` = #{commentCreateUserName}
+ 			AND `commentId` = #{commentId}
  			AND `userId` = #{userId}
- 	
+ 		
  	</delete>
  	
  	<select id="selectCountRecommendByCommentIdUserId" parameterType="map" resultType="int">
@@ -64,6 +67,28 @@
 	
 	</delete>
  	
- 
+ 	<select id="selectRecommendRankingList" resultType="com.hamsh5312.solution.post.recommend.model.Recommend">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `commentCreateUserName`
+ 			, count(commentId)
+ 			, `userId`
+ 			, `createdAt`
+ 		FROM
+ 			`recommend`
+ 		GROUP BY `commentCreateUserName`
+ 		ORDER BY count(commentId) DESC
+ 	</select>
+ 	
+ 	<select id="selectRecommendCount" resultType="int">
+ 		SELECT
+ 			 count(commentId)
+ 		FROM
+ 			`recommend`
+ 		GROUP BY `commentCreateUserName`
+ 		ORDER BY count(commentId) DESC
+ 		
+ 	</select>
  
  </mapper>

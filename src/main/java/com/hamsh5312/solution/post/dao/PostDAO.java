@@ -18,7 +18,13 @@ public interface PostDAO {
 			, @Param("imagePath") String imagePath
 			, @Param("sBox") String sBox);
 	
-	public List<Post> selectWorryList();
+	
+	public List<Post> selectWorryList(
+			@Param("pageStart") int pageStart
+			, @Param("perPageNum") int perPageNum
+			, @Param("sBox") String sBox);
+	
+	public int selectNumber(@Param("category") String category);
 	
 	public Post selectWorry(@Param("id") int id);
 	

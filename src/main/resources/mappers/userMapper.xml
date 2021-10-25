@@ -62,5 +62,22 @@
  	
  	</select>
  	
+ 	<select id="selectUser" resultType="com.hamsh5312.solution.user.model.User">
+ 	
+ 		SELECT
+			`id`
+			, `loginId`
+ 			, `password`
+ 			, `name`
+ 			, `email`
+ 			, `introduce`
+ 			, `createdAt`
+ 			, `updatedAt`
+		FROM
+			`user`
+ 	
+ 	</select>
+	
+	
 	
 </mapper>

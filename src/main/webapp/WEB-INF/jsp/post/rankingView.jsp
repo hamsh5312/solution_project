@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>고민 추천 순위</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+	<div id="wrap">
+	
+		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		<hr>
+		
+		<section>
+		
+			<div>
+				<nav class="mt-1">
+					<ul class="nav nav-fill">
+                        <li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/post/list_view">고민 리스트</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/post/ranking_view">고민 해결 순위</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">이번달 상품 종류</a></li>
+                    </ul>
+				</nav>
+			</div>
+			
+			<div class="d-flex justify-content-center">
+				<div class="list-box w-75 my-4">
+				
+					<h1 class="text-center mt-3">고민 추천 순위</h1>
+					<img src="/static/images/solutionPic.png" width="80px;" height="80px;">
+					<table class="table text-center">
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>고민해결을 위한 한마디!</th>
+								<th>작성자</th>
+								<th>추천 개수</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<c:forEach var="recommend" items="${recommendList }" varStatus="status">
+							<tr>
+								<td>${status.index + 1}</td>
+								<td>
+									<c:forEach var="user" items="${userList }">
+										<c:if test="${recommend.commentCreateUserName eq user.name}">
+											${user.introduce }
+										</c:if>
+									</c:forEach>
+								</td>
+								<td>${recommend.commentCreateUserName }</td>
+								<td>
+									추천(높은순)
+								</td>
+							</tr>
+							
+							</c:forEach>
+							
+							
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+		</section>
+		
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />	
+	
+	</div>
+
+
+
+
+</body>
+</html>

@@ -27,5 +27,16 @@ public class CommentBO {
 	public int deleteCommentByPostId(int postId) {
 		return commentDAO.deleteCommentByPostId(postId);
 	}	
+	
+	
+	// 모든 댓글리스트
+	public List<Comment> getCommentList(){
+		return commentDAO.selectCommentList();
+	}
+	
+	// commentId 에 의한 comment 샐랙트!
+	public Comment getComment(int id) {
+		return commentDAO.selectComment(id);
+	}
 		
 }

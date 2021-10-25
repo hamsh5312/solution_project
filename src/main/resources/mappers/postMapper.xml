@@ -29,8 +29,9 @@
  		)
  		
  	</insert>
- 
- 	<select id="selectWorryList" resultType="com.hamsh5312.solution.post.model.Post">
+ 	
+ 	<select id="selectWorryList" resultType="com.hamsh5312.solution.post.model.Post"
+ 	parameterType="map">
  	
  		SELECT
  			`id`
@@ -44,10 +45,24 @@
  			, `updatedAt`
  		FROM
  			`post`
+ 		<if test='!sBox.equals("all")'>
+   			WHERE `sBox` = #{sBox}	
+		</if>	
  		ORDER BY `id` DESC	
+		LIMIT #{pageStart}, #{perPageNum}
 		
  	</select>
- 
+ 	
+ 	<select id="selectNumber" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`post`
+ 		<if test='!category.equals("all")'>
+   			WHERE `sBox` = #{category}	
+		</if>		
+ 	</select>
+ 		
  	<select id="selectPost" resultType="com.hamsh5312.solution.post.model.Post"
  	parameterType="int">
  	

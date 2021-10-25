@@ -1,9 +1,14 @@
 package com.hamsh5312.solution.post.recommend.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hamsh5312.solution.post.comment.bo.CommentBO;
+import com.hamsh5312.solution.post.comment.model.Comment;
 import com.hamsh5312.solution.post.recommend.dao.RecommendDAO;
+import com.hamsh5312.solution.post.recommend.model.Recommend;
 
 @Service
 public class RecommendBO {
@@ -12,18 +17,25 @@ public class RecommendBO {
 	@Autowired
 	private RecommendDAO recommendDAO;
 	
+	@Autowired
+	private CommentBO commentBO;
+	
 	public boolean recommend(int userId, int commentId) {
 		
 		// 추천 상태면 추천 취소
 		if(this.recommendByCommentIdUserId(commentId, userId)) {
-			int count = recommendDAO.deleteRecommend(userId, commentId);
+			Comment comment = commentBO.getComment(commentId);
+			int count = recommendDAO.deleteRecommend(userId, commentId, comment.getUserName());
 			if(count == 0) {
 				return false;
 			}else {
 				return true;
 			}
 		}else {  // 추천 취소 상태면 추천
-			int count = recommendDAO.insertRecommend(userId, commentId);
+			// commentId 에 의한 해당 comment 선택
+			Comment comment = commentBO.getComment(commentId);
+			// 해당  comment 에서 userName 을 뽑아서  recommend 테이블에 컬럼으로 넣기
+			int count = recommendDAO.insertRecommend(userId, commentId, comment.getUserName());
 			if(count == 1) {
 				return true;
 			}else {
@@ -55,6 +67,12 @@ public class RecommendBO {
 		return recommendDAO.deleteRecommendByPostId(postId);
 	}
 	
+	//
+	
+	public List<Recommend> getRecommendRankingList(){
+		return recommendDAO.selectRecommendRankingList();
+	}
 		
+	
 	
 }

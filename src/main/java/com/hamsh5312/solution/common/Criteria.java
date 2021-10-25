@@ -11,7 +11,7 @@ public class Criteria {
     
     public Criteria() {
         this.page = 1;
-        this.perPageNum = 10;
+        this.perPageNum = 5;
     }
     
     public int getPage() {
@@ -28,12 +28,7 @@ public class Criteria {
         return perPageNum;
     }
     public void setPerPageNum(int pageCount) {
-        int cnt = this.perPageNum;
-        if(pageCount != cnt) {
-            this.perPageNum = cnt;
-        } else {
-            this.perPageNum = pageCount;
-        }
+        this.perPageNum = pageCount; 
     }
 
     
