@@ -57,8 +57,21 @@ public class PostBO {
 		return postDAO.selectWorryList(pageStart, perPageNum, sBox);
 	}
 	
+	
+	public List<Post> getMyWorryList(PageMaker myPageMaker, int userId){
+		
+		int pageStart = myPageMaker.getCri().getPageStart();
+		int perPageNum = myPageMaker.getCri().getPerPageNum();
+		
+		return postDAO.selectMyWorryList(pageStart, perPageNum, userId);
+	}
+	
 	public int countNumber(String category) {
 		return postDAO.selectNumber(category);
+	}
+	
+	public int countMyNumber(int userId) {
+		return postDAO.selectMyNumber(userId);
 	}
 	
 	public Post getPost(int id) {

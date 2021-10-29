@@ -24,7 +24,15 @@ public interface PostDAO {
 			, @Param("perPageNum") int perPageNum
 			, @Param("sBox") String sBox);
 	
+	
+	public List<Post> selectMyWorryList(
+			@Param("pageStart") int pageStart
+			, @Param("perPageNum") int perPageNum
+			, @Param("userId") int userId);
+	
 	public int selectNumber(@Param("category") String category);
+	
+	public int selectMyNumber(@Param("userId") int userId);
 	
 	public Post selectWorry(@Param("id") int id);
 	

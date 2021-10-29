@@ -53,7 +53,31 @@
 		
  	</select>
  	
- 	<select id="selectNumber" resultType="int">
+ 	
+ 	<select id="selectMyWorryList" resultType="com.hamsh5312.solution.post.model.Post"
+ 	parameterType="map">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+   		WHERE `userId` = #{userId}	
+ 		ORDER BY `id` DESC	
+		LIMIT #{pageStart}, #{perPageNum}
+		
+ 	</select>
+ 	
+ 	
+ 	<select id="selectNumber" resultType="int"
+ 	parameterType="String">
  		SELECT
  			COUNT(*)
  		FROM
@@ -62,6 +86,17 @@
    			WHERE `sBox` = #{category}	
 		</if>		
  	</select>
+ 		
+ 	<select id="selectMyNumber" resultType="int"
+ 	parameterType="int">
+ 	
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`post`
+   		WHERE `userId` = #{userId}
+   			
+ 	</select>	
  		
  	<select id="selectPost" resultType="com.hamsh5312.solution.post.model.Post"
  	parameterType="int">

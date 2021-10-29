@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고민 리스트</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -17,6 +17,16 @@
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+<style>
+
+	.button-box{
+		background-color:#00ff80;
+		font-weight:bold;
+		width:120px;
+		border-radius: 25px;
+	}
+	
+</style>
 </head>
 <body>
 
@@ -44,7 +54,9 @@
 					<h1 class="text-center mt-3">고민 리스트</h1>
 					<img src="/static/images/left.jpg" width="80px;" height="80px;">
 					<div class="mb-3 d-flex justify-content-end">
-					
+						<c:if test="${userId ne null }">
+							<button type="button" class="button-box form-control mr-5" onclick="location.href='/post/my_view';">내 고민 보기</button>
+						</c:if>
 						<select id="categoryBox" name="worry" style="width:100px;">
 							<option>선택</option>
 							<option value="all" id="allId">전체선택</option>
@@ -69,6 +81,10 @@
 						</thead>
 						
 						<tbody>
+						
+							<!-- 아래에 forEach 문을 2개 만들고   만약에 어떤 해당 id 가 클릭한다면 그 id에 해당하는 반복문 실행하고 
+								 그 id 가 클릭안되면 그냥 다른 반복문 실행  -->
+						
 							<c:forEach var="worry" items="${worryList }">
 							<tr>
 								<td>${worry.id }</td>
@@ -76,6 +92,8 @@
 								<td>${worry.userName }</td>
 							</tr>
 							</c:forEach>
+						
+							
 						</tbody>
 					</table>
 					
@@ -203,8 +221,6 @@
 				
 			});
 		
-			
-			
 			
 			
 		});

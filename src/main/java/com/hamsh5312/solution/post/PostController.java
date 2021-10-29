@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hamsh5312.solution.common.Criteria;
 import com.hamsh5312.solution.common.PageMaker;
@@ -70,6 +69,35 @@ public class PostController {
 		
 		return "post/listView";
 	}
+	
+	
+	
+	@GetMapping("/my_view")
+	public String myView(
+			Model model
+			, @RequestParam(value= "page" , required = false) Integer page
+			, HttpServletRequest request) {
+		
+		PageMaker myPageMaker = new PageMaker();
+		Criteria cri = new Criteria();
+		if(page != null) {
+			cri.setPage(page);
+		}
+		myPageMaker.setCri(cri);
+		
+		HttpSession session = request.getSession();
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		int myNumber = postBO.countMyNumber(userId);
+		myPageMaker.setTotalCount(myNumber);
+		model.addAttribute("pageMaker", myPageMaker);
+		
+		List<Post> myWorryList = postBO.getMyWorryList(myPageMaker, userId);
+		model.addAttribute("myWorryList", myWorryList);
+		
+		return "post/myView";
+	}
+	
 	
 	
 	
