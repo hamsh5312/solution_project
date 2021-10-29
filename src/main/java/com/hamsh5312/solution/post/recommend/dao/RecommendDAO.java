@@ -30,6 +30,8 @@ public interface RecommendDAO {
 	
 	public List<Recommend> selectRecommendRankingList();
 	
+	public List<String> selectTop3People();
+	
 	public List<Integer> selectRecommendCount();
 	
 	

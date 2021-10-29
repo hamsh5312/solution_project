@@ -16,6 +16,8 @@ import com.hamsh5312.solution.post.dao.PostDAO;
 import com.hamsh5312.solution.post.model.Post;
 import com.hamsh5312.solution.post.model.PostDetail;
 import com.hamsh5312.solution.post.recommend.bo.RecommendBO;
+import com.hamsh5312.solution.post.recommend.model.Recommend;
+import com.hamsh5312.solution.post.recommend.model.RecommendInfo;
 import com.hamsh5312.solution.user.dao.UserDAO;
 import com.hamsh5312.solution.user.model.User;
 
@@ -113,20 +115,15 @@ public class PostBO {
 			commentDetailList.add(commentDetail);
 		}
 		
-		
 		postDetail.setPost(post);
 		postDetail.setCommentDetailList(commentDetailList);
-		
-		
 			
 		return postDetail;
 	}
 	
 	
 	public List<User> getUserList(){ 
-		
 		return userDAO.selectUser();
-		
 	}
 	
 	public List<CommentDetail> getCommentDetailList(){
@@ -134,7 +131,6 @@ public class PostBO {
 		// 바로 아래식은 굳이 필요없을거같은데... 내가 필요한건 추천개수뿐임.
 		List<Comment> commentList = commentBO.getCommentList();
 		List<CommentDetail> commentDetailList = new ArrayList<>();
-		
 		
 		// 댓글 하나당 추천 상태, 추천 개수 매칭하기
 		for(Comment comment : commentList) {
@@ -149,11 +145,9 @@ public class PostBO {
 			
 			// 어차피 아래 상태는 필요없으니까 (고민 해결 순위에 아이디별 추천상태는 필요없음, 화면에 안타나남)
 			boolean isRecommend = false;
-			commentDetail.setRecommend(isRecommend);
-			
+			commentDetail.setRecommend(isRecommend);		
 			commentDetail.setRecommendCount(recommendCount);
-			
-			
+	
 			commentDetailList.add(commentDetail);
 			
 		}
@@ -163,8 +157,37 @@ public class PostBO {
 	}
 	
 	
+	public List<RecommendInfo> getRecommendInfoList(){
+		
+		// 포스트 컨트롤러에서 아래 식이 있었음.. 활용하기
+//		List<Recommend> recommendList = recommendBO.getRecommendRankingList();
+		
+		List<Recommend> recommendList = recommendBO.getRecommendRankingList();
+		List<RecommendInfo> recommendInfoList = new ArrayList<>();
+		List<Integer> personTotalRecommendList = recommendBO.getRecommendTotalCount();
+		
+		int i = 0;
+		for(Recommend recommend : recommendList) {
+			// Recommend 리스트들을 하나씩 set 하자
+			RecommendInfo recommendInfo = new RecommendInfo();
+			recommendInfo.setRecommend(recommend);
+			
+			// 전체 추천수를  set 하자
+			
+			for( ; i < personTotalRecommendList.size(); ) {
+				// 여기에 어떤 조건을 주어서 하나씩만 set 하고싶은데... 아래방법이 맞는건가 ... 음
+				recommendInfo.setPersonTotalRecommend(personTotalRecommendList.get(i));
+				i++;
+				break;	
+			}
+			
+			recommendInfoList.add(recommendInfo);
+		}
+		
+		return recommendInfoList;
+			
+	}
 	
-
 	
 	
 	

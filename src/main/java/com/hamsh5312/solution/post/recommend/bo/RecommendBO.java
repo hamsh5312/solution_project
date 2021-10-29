@@ -72,7 +72,13 @@ public class RecommendBO {
 	public List<Recommend> getRecommendRankingList(){
 		return recommendDAO.selectRecommendRankingList();
 	}
-		
 	
+	public List<String> getTop3People(){
+		return recommendDAO.selectTop3People();
+	}
+	
+	public List<Integer> getRecommendTotalCount(){
+		return recommendDAO.selectRecommendCount();
+	}
 	
 }

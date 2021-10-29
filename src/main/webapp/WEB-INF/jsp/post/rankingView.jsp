@@ -33,7 +33,7 @@
                         <li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/list_view">고민 리스트</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/ranking_view">고민 해결 순위</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">이번달 상품 종류</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/post/product_view">이번달 상품 종류</a></li>
                     </ul>
 				</nav>
 			</div>
@@ -42,11 +42,14 @@
 				<div class="list-box w-75 my-4">
 				
 					<h1 class="text-center mt-3">고민 추천 순위</h1>
-					<img src="/static/images/solutionPic.png" width="80px;" height="80px;">
+					<div class="d-flex align-items-center">
+						<img src="/static/images/solutionPic.png" width="80px;" height="80px;">
+						<h1 class="pl-4">TOP 5</h1>
+					</div>
 					<table class="table text-center">
 						<thead>
 							<tr>
-								<th>No.</th>
+								<th>순위</th>
 								<th>고민해결을 위한 한마디!</th>
 								<th>작성자</th>
 								<th>추천 개수</th>
@@ -54,19 +57,20 @@
 						</thead>
 						
 						<tbody>
-							<c:forEach var="recommend" items="${recommendList }" varStatus="status">
+							<c:forEach var="recommendInfo" items="${recommendInfoList }" varStatus="status">
+							
 							<tr>
 								<td>${status.index + 1}</td>
 								<td>
 									<c:forEach var="user" items="${userList }">
-										<c:if test="${recommend.commentCreateUserName eq user.name}">
+										<c:if test="${recommendInfo.recommend.commentCreateUserName eq user.name}">
 											${user.introduce }
 										</c:if>
 									</c:forEach>
 								</td>
-								<td>${recommend.commentCreateUserName }</td>
+								<td>${recommendInfo.recommend.commentCreateUserName }</td>
 								<td>
-									추천(높은순)
+									${recommendInfo.personTotalRecommend }
 								</td>
 							</tr>
 							

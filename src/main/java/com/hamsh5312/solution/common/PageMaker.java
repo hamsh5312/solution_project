@@ -1,5 +1,8 @@
 package com.hamsh5312.solution.common;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 	
 	private Criteria cri;
@@ -40,6 +43,13 @@ public class PageMaker {
         next = endPage * cri.getPerPageNum() < totalCount ? true : false;
         
     }
+    
+    public String makeQueryPage(int page) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .build();
+        return uri.toUriString();
+    }
+    
     
     public int getStartPage() {
         return startPage;

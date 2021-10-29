@@ -33,8 +33,8 @@
 			
 				<div class="d-flex justify-content-between">
 					<h1 class="text-center">고민 보기</h1>
-					<div>고민종류 쓰기(예:음식)</div>
-					<span>게시자 : ${post.userName}</span>
+					<h5 class="pt-2">고민종류 : ${post.sBox }</h5>
+					<h5 class="pt-2">게시자 : ${post.userName}</h5>
 				</div>
 				
 				<div class="d-flex my-3">
@@ -50,7 +50,9 @@
 				
 				<div class="d-flex justify-content-between my-3">
 					<div>
+						
 						<a href="/post/list_view" class="btn btn-info">목록으로</a>
+							
 						<c:if test="${userName ne null }">
 							<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id }">삭제</button>
 						</c:if>

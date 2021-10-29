@@ -33,7 +33,7 @@
                         <li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/list_view">고민 리스트</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/ranking_view">고민 해결 순위</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">이번달 상품 종류</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/post/product_view">이번달 상품 종류</a></li>
                     </ul>
 				</nav>
 			</div>
@@ -46,7 +46,7 @@
 					<div class="mb-3 d-flex justify-content-end">
 					
 						<select id="categoryBox" name="worry" style="width:100px;">
-							<option>선택버튼</option>
+							<option>선택</option>
 							<option value="all" id="allId">전체선택</option>
 							<option value="study" id="studyId">공부</option>
 							<option value="exercise" id="exerciseId">운동</option>
@@ -55,6 +55,7 @@
 							<option value="game" id="gameId">놀이</option>
 							<option value="startUp" id="startUpId">창업</option>
 							<option value="other" id="otherId">기타</option>
+							
 						</select>
 						
 					</div>	
@@ -85,31 +86,50 @@
 					</c:if>
 					
 					 <div class="d-flex justify-content-center">
+					 
 					 	<ul class="btn-group pagination">
+					 	
 						    <c:if test="${pageMaker.prev }">
-						    <li>
-						    <span id="beforeBtn">
-						        <a href='<c:url value="/post/list_view?page=${pageMaker.startPage-1 }&category=${param.category }"/>'><i class="mr-5 bi bi-arrow-left-circle" style="font-size:25px;"></i></a>
-						    </span> 
-						    </li>
+							    <li>
+							   		<c:choose>
+							        	<c:when test="${param.category ne null }">
+							        		<a href='<c:url value="/post/list_view?page=${pageMaker.startPage-1 }&category=${param.category }"/>'><i class=" bi bi-arrow-left-circle" style="font-size:25px;"></i></a>
+							        	</c:when>
+							        	<c:otherwise>
+							        		<a href='<c:url value="/post/list_view?page=${pageMaker.startPage-1 }&category=all"/>'><i class=" bi bi-arrow-left-circle" style="font-size:25px;"></i></a>
+							        	</c:otherwise>
+						        	</c:choose> 
+							    </li>
 						    </c:if>
 						    
 						    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-						    <li>
-						    <span id="numberBtn">
-						        <a href='<c:url value="/post/list_view?page=${pageNum }&category=${param.category }"/>'><i class="fa">${pageNum }</i></a>
-						    </span>    
-						    </li>
+							    <li>
+							    	<c:choose>
+								    	<c:when test="${param.category ne null }">
+								    		<a href='<c:url value="/post/list_view?page=${pageNum }&category=${param.category }"/>'><i class="fa ml-3" style="font-size:25px;" >${pageNum }</i></a>
+								    	</c:when>
+								    	<c:otherwise>
+								    		<a href='<c:url value="/post/list_view?page=${pageNum }&category=all"/>'><i class="fa ml-3" style="font-size:25px;" >${pageNum }</i></a>
+								    	</c:otherwise>
+							    	</c:choose>
+							    </li>
 						    </c:forEach>
 						    
 						    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-						    <li>
-						    <span id="afterBtn">
-						        <a href='<c:url value="/post/list_view?page=${pageMaker.endPage+1 }&category=${param.category }"/>'><i class="bi bi-arrow-right-circle" style="font-size:25px;"></i></a>
-						    </span>    
-						    </li>
+							    <li>
+						        	 <c:choose>
+							        	 <c:when test="${param.category ne null }">
+							        	 	<a href='<c:url value="/post/list_view?page=${pageMaker.endPage+1 }&category=${param.category }"/>'><i class="ml-3 bi bi-arrow-right-circle" style="font-size:25px;"></i></a>
+							        	 </c:when>
+							        	 <c:otherwise>
+							        	 	<a href='<c:url value="/post/list_view?page=${pageMaker.endPage+1 }&category=all"/>'><i class="ml-3 bi bi-arrow-right-circle" style="font-size:25px;"></i></a>
+							        	 </c:otherwise>
+						        	 </c:choose>
+							    </li>
 						    </c:if>
+						    
 						</ul>
+						
 					 </div>
 					
 					
@@ -146,36 +166,40 @@
 			$("#categoryBox").change(function(){
 				var category = $(this).val();
 				
-				location.href="/post/list_view?category="+category;
-				
 				if(category == "all"){
-					$("#allId").val("all").prop("selected", true);
+					
+					$("#allId").val("all").prop("selected", true);	
 				}
 				if(category == "study"){
+					
 					$("#studyId").val("study").prop("selected", true);
 				}
 				if(category == "exercise"){
+					
 					$("#exerciseId").val("exercise").prop("selected", true);
 				}
 				if(category == "food"){
+					
 					$("#foodId").val("food").prop("selected", true);
 				}
 				if(category == "game"){
+				
 					$("#gameId").val("game").prop("selected", true);
 				}
 				if(category == "other"){
+					
 					$("#otherId").val("other").prop("selected", true);
 				}
 				if(category == "hobby"){
+					
 					$("#hobbyId").val("hobby").prop("selected", true);
 				}
 				if(category == "startUp"){
+					
 					$("#startUpId").val("startUp").prop("selected", true);
 				}
 				
-				
-				
-				
+				location.href="/post/list_view?category="+category;
 				
 			});
 		

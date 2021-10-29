@@ -79,7 +79,20 @@
  			`recommend`
  		GROUP BY `commentCreateUserName`
  		ORDER BY count(commentId) DESC
+ 		LIMIT 5
  	</select>
+ 	
+ 	
+ 	<select id="selectTop3People" resultType="String">
+ 		SELECT
+ 			`commentCreateUserName`
+ 		FROM
+ 			`recommend`
+ 		GROUP BY `commentCreateUserName`
+ 		ORDER BY count(commentId) DESC
+ 		LIMIT 3
+ 	</select>
+ 	
  	
  	<select id="selectRecommendCount" resultType="int">
  		SELECT
@@ -88,7 +101,7 @@
  			`recommend`
  		GROUP BY `commentCreateUserName`
  		ORDER BY count(commentId) DESC
- 		
+ 		LIMIT 5
  	</select>
  
  </mapper>

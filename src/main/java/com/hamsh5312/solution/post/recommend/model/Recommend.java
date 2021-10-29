@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public class Recommend {
-
+	
 	private int id;
 	private String commentCreateUserName;
 	private int commentId;

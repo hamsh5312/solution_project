@@ -84,6 +84,12 @@
 					return ;
 				}	
 				
+				if(sBox == "all"){
+					alert("고민 종류를 선택하세요.");
+					return ;
+				}
+				
+				
 				var formData = new FormData();
 				formData.append("subject", title);
 				formData.append("content", content);
