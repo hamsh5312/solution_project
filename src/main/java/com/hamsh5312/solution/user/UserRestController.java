@@ -44,6 +44,9 @@ public class UserRestController {
 		return result;	
 	}
 	
+	
+	
+	// 아이디 중복확인
 	@GetMapping("/is_duplicate_id")
 	public Map<String, Boolean> isDuplicateId(@RequestParam("loginId") String loginId){
 			
@@ -56,6 +59,20 @@ public class UserRestController {
 //		 result.put("is_duplicate", userBO.isDuplicateId(loginId));
 		return result;	
 	}
+	
+	// 닉네임 중복확인
+	@GetMapping("/is_duplicate_name")
+	public Map<String, Boolean> isDuplicateName(@RequestParam("name") String name){
+			
+		Map<String, Boolean> result = new HashMap<>(); 	
+		if(userBO.isDuplicateName(name)) {
+			result.put("is_duplicate", true);
+		}else {
+			result.put("is_duplicate", false);
+		}
+		return result;	
+	}
+	
 	
 	@PostMapping("/sign_in")
 	public Map<String, String> signInFunction(

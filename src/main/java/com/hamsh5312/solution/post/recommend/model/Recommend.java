@@ -8,6 +8,7 @@ public class Recommend {
 	private int id;
 	private String commentCreateUserName;
 	private int commentId;
+	// 아래 userId 는 추천을 누른 사람들의 userId 가 각각 하나씩 쌓여가는거임..
 	private int userId;
 	private Date createdAt;
 	

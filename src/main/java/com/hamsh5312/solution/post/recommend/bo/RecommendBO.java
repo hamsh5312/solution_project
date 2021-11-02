@@ -62,6 +62,15 @@ public class RecommendBO {
 		return recommendDAO.selectCountRecommendByCommentId(commentId);
 	}
 	
+	// 4등 보너스 게임으로 인한 정보 넣기
+	public int putFourthPeopleInfo(String product, String fourthUserName) {
+		return recommendDAO.insertFourthPeopleInfo(product, fourthUserName);
+	}
+	
+	// 4등 보너스 게임 사람 선택하기
+	public String chooseBonusPeople(String startDate, String endDate) {
+		return recommendDAO.selectBonusPeople(startDate, endDate);
+	}
 	
 	public int deleteRecommendByPostId(int postId) {
 		return recommendDAO.deleteRecommendByPostId(postId);

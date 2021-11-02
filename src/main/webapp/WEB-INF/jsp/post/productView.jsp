@@ -133,12 +133,18 @@
 		</div>
 			
 		</section>
-		
-		<div>
-			<!-- 뽑기 -->
-			<h2 class="title">4등은 아쉬우니까! 한 번 더 기회를!</h2>
 			
-			<div class="box-roulette">
+		<!-- 4등 상품 정보 없으면 아래꺼 안내 문구가 뜨지 않게 -->
+		<!-- 4등의 상품 정보가 있다면 상품정보를 그냥 출력하고  추가로 원판 돌리시 경고창 뜨게 -->
+		<c:choose>
+			<c:when test="${empty dateInfo }">
+				
+				<div>
+					<!-- 뽑기 -->
+					<h2 class="title">4등은 아쉬우니까! 한 번 더 기회를!</h2>	
+				</div>
+					
+				<div class="box-roulette">
 				<div class="markers"></div>
 				<c:choose>
 					<c:when test="${top5People.get(3).commentCreateUserName eq  userName }">
@@ -153,15 +159,31 @@
 					</c:otherwise>
 				</c:choose>
 				<div class="roulette" id="roulette"></div>
-			</div>
+				</div>
+				
+				<div>
+					<h2 class="text-center">4등은 보너스 게임에 참여해서 추가 상품에 도전하세요!</h2>		
+				</div>
+				
+				<div id="fourthProduct" class="text-center" style="font-weight:bold; font-size:40px;">
+					
+				</div>
+					
+			</c:when>
+			<c:otherwise>
+				<div class="text-center">
+					<h2> 4등의 보너스 상품 도전 결과는?</h2>
+					<h2> 4등 상품은 ${dateInfo } 입니다.</h2>  
+				</div>
+			</c:otherwise>
 			
-		</div>
+		</c:choose>
 		
 		
+		<!-- 4등 상품 정보 있으면 아래꺼가 나오지 않게 -->
+		<!-- 4등의 상품정보가 없다면 아래꺼로 돌려서 나오는 결과를 삽입해주고 -->
 		<!-- 아래 스크립트에서 바로아래 div 안에  태그를 삽입하는문장이 있음. -->
-		<div id="insert" class="text-center" style="font-weight:bold; font-size:40px;">
-			
-		</div>
+		
 		
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
@@ -349,18 +371,62 @@
 			              console.log(currentA_value);
 			              
 			              if(currentA_value == 1 || currentA_value == 5 || currentA_value == 9){  // 1, 3, 5, 7 만 꽝으로 설정
-			            	  $("#insert").text("4등의 상품은....꽝입니다 ㅎㅎ ㅠㅠ");
-			              }else if(currentA_value == 2 || currentA_value == 6 || currentA_value == 10){
-			            	  $("#insert").text("4등은 신라면 " + "상품을 드릴게요.");
 			            	  
+			            	//$("#fourthProduct").text("4등의 상품은....꽝입니다 ㅎㅎ ㅠㅠ");
+			                var fourthProduct = "꽝";
+			                
+			              }else if(currentA_value == 2 || currentA_value == 6 || currentA_value == 10){
+			            	  
+			            	 // $("#fourthProduct").text("4등은 신라면 " + "상품을 드릴게요.");
+			            	 var fourthProduct = "신라면"; 
+			            	 
 			              }else if(currentA_value == 3 || currentA_value == 7 || currentA_value == 11){
-			            	  $("#insert").text("4등은 가방 " + "상품을 드릴게요.");
+			            	  
+			            	 // $("#fourthProduct").text("4등은 가방 " + "상품을 드릴게요.");
+			            	  var fourthProduct = "가방";
+			            	  
 			              }else{
-			            	  $("#insert").text("4등은 모니터 " + "상품을 드릴게요.");
+			            	  
+			            	 // $("#fourthProduct").text("4등은 모니터 " + "상품을 드릴게요.");
+			            	  var fourthProduct = "모니터";
 			              }    
 						  
 			              click++;
 			              
+			              var product = fourthProduct;
+			              
+			              // AJAX 를 통해서 위에 변수를 가져와서 
+							
+							$.ajax({
+								type:"get",
+								url:"/post/bonusGame",
+								data:{"product":product},
+								success:function(data){
+									if(data.result == "success"){
+										if(product== "꽝"){
+											$("#fourthProduct").text("4등의 상품은....꽝입니다 ㅎㅎ ㅠㅠ");
+										}else if(product== "모니터"){
+											$("#fourthProduct").text("4등은 모니터 " + "상품을 드릴게요.");
+										}else if(product== "가방"){
+											$("#fourthProduct").text("4등은 가방 " + "상품을 드릴게요.");
+										}else{
+											$("#fourthProduct").text("4등은 신라면 " + "상품을 드릴게요.");
+										}
+										//alert("4등 정보 삽입 성공");
+										//location.reload();
+									}else{
+										alert("4등 정보 삽입 실패");
+									}
+								},
+								error:function(e){
+									alert("error");
+								}
+								
+							});
+						     
+			              
+			              
+			              // 
 			              
 			            },
 			            duration: speed
@@ -374,6 +440,9 @@
 			      });
 			    }
 			  });
+			
+			
+			
 			
 			
 			$(function() {

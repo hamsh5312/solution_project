@@ -1,5 +1,6 @@
 package com.hamsh5312.solution.post.recommend.dao;
 
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +26,16 @@ public interface RecommendDAO {
 			, @Param("userId") int userId);
 	
 	public int selectCountRecommendByCommentId(@Param("commentId") int commentId);
+	
+	// 4등 보너스게임으로 인한 정보넣기
+	public int insertFourthPeopleInfo(
+			@Param("product") String product
+			, @Param("fourthUserName") String fourthUserName);
+	
+	// 날짜 정보 가져오기
+	public String selectBonusPeople(
+			@Param("startDate") String startDate
+			, @Param("endDate") String endDate);
 	
 	public int deleteRecommendByPostId(@Param("postId") int postId);
 	

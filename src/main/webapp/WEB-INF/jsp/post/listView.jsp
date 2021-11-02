@@ -67,13 +67,15 @@
 						
 						<form action="/post/list_view">
 							<div class="input-group mr-3" style="width:330px;">		
-								<input type="text" id="searchId" name="searchInput" class="form-control rounded" placeholder="제목이나 작성자를 검색하세요." aria-label="Search"
+								<input type="text" id="searchId" name="searchInput" value="${param.searchInput }" class="form-control rounded" placeholder="제목이나 작성자를 검색하세요." aria-label="Search"
 									aria-describedby="search-addon" />
-								<button type="submit" id="searchBtn"  class="btn btn-outline-secondary" style="font-weight:bold;">검색</button>
+								<button type="submit" id="searchBtn" class="btn btn-outline-secondary" style="font-weight:bold;">검색</button>
 							</div>
+							
 						</form>
 						
 						<select id="categoryBox" name="worry" style="width:100px; height:37.68px;">
+							
 							<option>고민 종류</option>
 							<option value="all"  id="allId">전체선택</option>
 							<option value="study" id="studyId">공부</option>
@@ -84,7 +86,7 @@
 							<option value="startUp" id="startUpId">창업</option>
 							<option value="other" id="otherId">기타</option>
 							
-							<!--  jstl if 문 el 태그  -->
+							
 							<c:choose>
 								<c:when test="${param.category eq 'all'}">
 									<option value="all"  id="allId" selected>전체선택</option>

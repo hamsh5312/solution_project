@@ -82,6 +82,24 @@
  		LIMIT 5
  	</select>
  	
+ 	<!-- 4등 보너스 게임 정보 넣기 -->
+ 	
+ 	<insert id="insertFourthPeopleInfo" parameterType="map">
+ 		
+ 		INSERT INTO `fourthPeople`
+	 	(	
+	 		
+	 		`fourthUserName`
+	 		, `product`
+	 		, `createdAt`
+	 		
+	 	) VALUES(
+	 		#{fourthUserName}
+	 		, #{product}
+	 		, now()
+	 	)
+	
+ 	</insert>
  	
  	<select id="selectTop3People" resultType="String">
  		SELECT
@@ -93,6 +111,17 @@
  		LIMIT 3
  	</select>
  	
+ 	<!-- 날짜 정보 가져오기 -->
+ 	<select id="selectBonusPeople" resultType="String"
+	 	parameterType="map">
+	 	
+	 		SELECT `product` FROM `fourthPeople` 
+	 		WHERE `createdAt` between #{startDate} and #{endDate}
+		<!-- 지금은 내가 만든 데이터로 가져왔기때문에 쓰자 -->
+		<!-- 비트윈 문에서 비트윈 A AND B 에서 각각 값을 구해서 해주는 포맷이좋다. 여기서는 '-' 때문에 바로 값을 -->
+		<!-- $ 달러 표시는 최대한 안쓰는게 좋다.  보안의 위험이있다. -->
+ 	
+ 	</select>
  	
  	<select id="selectRecommendCount" resultType="int">
  		SELECT

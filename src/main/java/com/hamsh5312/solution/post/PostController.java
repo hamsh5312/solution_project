@@ -1,6 +1,9 @@
 package com.hamsh5312.solution.post;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ import com.hamsh5312.solution.post.model.PostDetail;
 import com.hamsh5312.solution.post.recommend.bo.RecommendBO;
 import com.hamsh5312.solution.post.recommend.model.Recommend;
 import com.hamsh5312.solution.post.recommend.model.RecommendInfo;
+import com.hamsh5312.solution.post.recommend.model.fourthPeople;
 import com.hamsh5312.solution.user.model.User;
 
 @Controller
@@ -44,7 +48,6 @@ public class PostController {
 			, @RequestParam(value= "page" , required = false) Integer page
 			, @RequestParam(value ="category", required =false) String category
 			, @RequestParam(value ="searchInput", required =false) String searchInput
-			//, RedirectAttributes redAttr
 			) {
 		
 		PageMaker pageMaker = new PageMaker();
@@ -121,15 +124,12 @@ public class PostController {
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
 		
+		PostDetail postDetail = postBO.getPostList(userId, id);
+		model.addAttribute("postDetail", postDetail);
 		
-			PostDetail postDetail = postBO.getPostList(userId, id);
-			model.addAttribute("postDetail", postDetail);
+		Post post = postBO.getPost(id);
+		model.addAttribute("post", post);
 			
-			Post post = postBO.getPost(id);
-			model.addAttribute("post", post);
-	
-		
-		
 		return "post/detailView";
 	}
 	
@@ -175,6 +175,23 @@ public class PostController {
 		List<Recommend> top5People = recommendBO.getRecommendRankingList();
 		model.addAttribute("top5People",top5People);
 		
+		// 날짜 확인해보기
+		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM");
+        Calendar calendar = Calendar.getInstance();
+
+        Date dateObj = calendar.getTime();
+        String formattedDate = dtf.format(dateObj);
+        String startDate = formattedDate + "-01 00:00:00";
+        String endDate = formattedDate + "-" + calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + " 23:59:59";		
+        //System.out.println(formattedDate);
+		// formattedDate 에는 2021-11 이 저장 되어있다고 판단함.. 확인은?
+		
+		// 날짜 정보를 출력해보자
+		
+        String dateInfo = recommendBO.chooseBonusPeople(startDate, endDate);
+        
+		model.addAttribute("dateInfo",dateInfo);
+		model.addAttribute("formattedDate",formattedDate);
 		return "post/productView";
 		
 	}

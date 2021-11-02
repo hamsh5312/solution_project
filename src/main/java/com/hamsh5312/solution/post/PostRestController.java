@@ -1,6 +1,8 @@
 package com.hamsh5312.solution.post;
 
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hamsh5312.solution.post.bo.PostBO;
 import com.hamsh5312.solution.post.model.Post;
+import com.hamsh5312.solution.post.recommend.bo.RecommendBO;
+import com.hamsh5312.solution.post.recommend.model.Recommend;
 
 @RestController
 @RequestMapping("/post")
@@ -24,6 +28,9 @@ public class PostRestController {
 	
 	@Autowired
 	private PostBO postBO;
+	
+	@Autowired
+	private RecommendBO recommendBO;
 	
 	@PostMapping("/worry_create")
 	public Map<String ,String> create(
@@ -109,6 +116,29 @@ public class PostRestController {
 		return result;
 		
 	}
+	
+	//
+	@GetMapping("/bonusGame")
+	public Map<String, String> bonusGameFunction(
+			@RequestParam("product") String product){
+		
+		Map<String ,String> result = new HashMap<>();
+		
+		List<Recommend> top5People = recommendBO.getRecommendRankingList();
+		String fourthUserName = top5People.get(3).getCommentCreateUserName();
+		
+		int count = recommendBO.putFourthPeopleInfo(product, fourthUserName);
+		
+		if(count == 0) {
+			result.put("result", "fail");
+		}else {
+			result.put("result", "success");
+		}
+		
+		return result;
+		
+	}
+	
 	
 	
 	

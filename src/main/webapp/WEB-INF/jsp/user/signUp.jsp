@@ -27,17 +27,26 @@
 				
 				<form id="signUpForm">
 					<h4 class="text-center pt-3" style="font-weight:bold;">회원가입</h4>
+					
 					<div class="d-flex">	
 						<input type="text" id="loginIdInput" class="form-control mt-3 mr-3" placeholder="아이디를 입력하세요.">
 						<button type="button" id="isDuplicateBtn" style="width:100px;" class="btn btn-primary btn-block mt-3" >중복확인</button>		
 					</div>
 					<div id="duplicateDiv" class="d-none"><small class="text-danger">중복된 ID 입니다.</small></div>
-					<div id="noneDuplicateDiv" class="d-none"><small class="text-success">사용 가능한 ID 입니다.</small></div>	
+					<div id="noneDuplicateDiv" class="d-none"><small class="text-success">사용 가능한 ID 입니다.</small></div>
+						
 					<input type="password" id="passwordInput" class="form-control mt-3" placeholder="비밀번호를 입력하세요.">
 					<input type="password" id="passwordConfirmInput" class="form-control mt-3" placeholder="비밀번호 확인">
 					<small id="errorPassword" class="text-danger d-none">비밀번호가 일치하지 않습니다.</small>
 					<small id="correctPassword" class="text-success d-none">비밀번호가 일치합니다.</small>
-					<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
+					
+					<div class="d-flex">
+						<input type="text" id="nameInput" class="form-control mt-3 mr-3" placeholder="닉네임">
+						<button type="button" id="isNameDuplicateBtn" style="width:100px;" class="btn btn-primary btn-block mt-3">중복확인</button>
+					</div>
+					<div id="duplicateNameDiv" class="d-none"><small class="text-danger">중복된 닉네임 입니다.</small></div>
+					<div id="noneDuplicateNameDiv" class="d-none"><small class="text-success">사용 가능한 닉네임 입니다.</small></div>	
+					
 					<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
 					<input type="text" id="introduceInput" class="form-control mt-3" placeholder="자기 소개">
 					
@@ -98,6 +107,9 @@
 			var isIdCheck = false;
 			var isDuplicateId = true;
 			
+			var isNameCheck = false;
+			var isDuplicateName = true;
+			
 			// 아이디에 입력이 있을경우 중복체크 상태를 초기화 한다
 			$("#loginIdInput").on("input", function() {
 				$("#duplicateDiv").addClass("d-none");
@@ -106,6 +118,15 @@
 				isDuplicateId = true;
 			});
 				
+			
+			// 닉네임에 입력이 있을경우 중복체크 상태를 초기화 한다
+			$("#nameInput").on("input", function() {
+				$("#duplicateNameDiv").addClass("d-none");
+				$("#noneDuplicateNameDiv").addClass("d-none");
+				isNameCheck = false;
+				isDuplicateName = true;
+			});
+			
 			
 			$("#signUpForm").on("submit", function(e) {
 				
@@ -153,15 +174,27 @@
 					return ;
 				}
 				
-				// 중복체크 했는지?
+				// id 중복체크 했는지?
 				if(isIdCheck == false) {
-					alert("중복체크를 진행하세요");
+					alert("아이디 중복체크를 진행하세요");
 					return ;
 				}
 						
-				// 중복이 되었는지 안되었는지?
+				// id 중복이 되었는지 안되었는지?
 				if(isDuplicateId == true) {
 					alert("아이디가 중복되었습니다.");
+					return ;
+				}
+				
+				// 닉네임 중복체크 했는지?
+				if(isNameCheck == false) {
+					alert("닉네임 중복체크를 진행하세요");
+					return ;
+				}
+				
+				// 닉네임 중복이 되었는지 안되었는지?
+				if(isDuplicateName == true) {
+					alert("닉네임이 중복되었습니다.");
 					return ;
 				}
 				
@@ -187,7 +220,7 @@
 			});
 			
 			
-			
+			// id 중복확인 버튼
 			$("#isDuplicateBtn").on("click", function() {
 				var loginId = $("#loginIdInput").val();
 				
@@ -223,6 +256,49 @@
 					
 				});
 			});
+			
+			
+			
+			// 닉네임 중복확인 버튼
+			$("#isNameDuplicateBtn").on("click", function() {
+				var name = $("#nameInput").val();
+				
+				if(name == null || name == "") {
+					alert("닉네임을 입력하세요");
+					return ;
+				}
+				
+				$.ajax({
+					type:"get",
+					url:"/user/is_duplicate_name",
+					data:{"name":name},
+					success:function(data) {
+						
+						isNameCheck = true;
+						
+						if(data.is_duplicate) {
+							isDuplicateName = true;
+							$("#duplicateNameDiv").removeClass("d-none");
+							$("#noneDuplicateNameDiv").addClass("d-none");
+						} else {
+							isDuplicateName = false;
+							$("#duplicateNameDiv").addClass("d-none");
+							$("#noneDuplicateNameDiv").removeClass("d-none");
+						}
+						
+						
+					},
+					error:function(e){
+						alert("중복확인 실패");
+					}
+					
+					
+				});
+			});
+			
+			
+			
+			
 			
 	
 		});

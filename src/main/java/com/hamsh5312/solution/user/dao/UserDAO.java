@@ -18,8 +18,10 @@ public interface UserDAO {
 			, @Param("email") String email
 			, @Param("introduce") String introduce);
 	
-	
+	// 아이디 중복확인
 	public int selectCountById(@Param("loginId") String loginId);
+	// 닉네임 중복확인
+	public int selectCountByName(@Param("name") String name);
 	
 	public User selectUserByLoginIdPassword(
 			@Param("loginId") String loginId

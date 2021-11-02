@@ -31,6 +31,7 @@
  		
  	</insert>
 	
+	<!-- 아이디 중복확인 -->
 	<select id="selectCountById" parameterType="string" resultType="int">
 		
 		SELECT
@@ -41,6 +42,19 @@
 			`loginId` = #{loginId};
 			
 	</select>
+ 	
+ 	<!-- 닉네임 중복확인 -->
+ 	<select id="selectCountByName" parameterType="string" resultType="int">
+ 		
+ 		SELECT
+			count(*)
+		FROM
+			`user`
+		WHERE
+			`name` = #{name};
+ 	
+ 	</select>
+ 	
  	
  	<select id="selectUserByLoginIdPassword" resultType="com.hamsh5312.solution.user.model.User"
  	parameterType="map">

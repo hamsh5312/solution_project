@@ -31,7 +31,7 @@ public class UserBO {
 		return userDAO.insertUser(loginId, encryptPassword, name, email, introduce);
 	}
 	
-	
+	// 아이디 중복확인
 	public boolean isDuplicateId(String loginId) {
 		if(userDAO.selectCountById(loginId) == 0) {
 			return false;
@@ -40,6 +40,15 @@ public class UserBO {
 		}
 		
 		// return (userDAO.selectCountById(loginId) != 0);
+	}
+	
+	// 닉네임 중복확인
+	public boolean isDuplicateName(String name) {
+		if(userDAO.selectCountByName(name) == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	
