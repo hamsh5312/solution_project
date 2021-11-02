@@ -43,19 +43,7 @@
 					<h1 class="text-center mt-3">내 고민 모아보기</h1>
 					<img src="/static/images/left.jpg" width="80px;" height="80px;">
 					<div class="mb-3 d-flex justify-content-end">
-					
-						<select id="categoryBox" name="worry" style="width:100px;">
-							<option>선택</option>
-							<option value="all" id="allId">전체선택</option>
-							<option value="study" id="studyId">공부</option>
-							<option value="exercise" id="exerciseId">운동</option>
-							<option value="food" id="foodId">음식</option>
-							<option value="hobby" id="hobbyId">취미</option>
-							<option value="game" id="gameId">놀이</option>
-							<option value="startUp" id="startUpId">창업</option>
-							<option value="other" id="otherId">기타</option>
-						</select>
-						
+							
 					</div>	
 					<table class="table text-center">
 						<thead>
@@ -68,11 +56,13 @@
 						
 						<tbody>
 						
-							<c:forEach var="myWorry" items="${myWorryList }">
+							<c:forEach var="myWorry" items="${myWorryList }" >
 							<tr>
+								
 								<td>${myWorry.id }</td>
 								<td><a href="/post/detail_view?id=${myWorry.id }">${myWorry.subject }</a></td>
 								<td>${myWorry.userName }</td>
+								
 							</tr>
 							</c:forEach>
 						

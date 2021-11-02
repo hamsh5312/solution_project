@@ -24,6 +24,10 @@ public interface PostDAO {
 			, @Param("perPageNum") int perPageNum
 			, @Param("sBox") String sBox);
 	
+	public List<Post> selectSearchWorryList(
+			@Param("pageStart") int pageStart
+			, @Param("perPageNum") int perPageNum
+			, @Param("searchInput") String searchInput);	
 	
 	public List<Post> selectMyWorryList(
 			@Param("pageStart") int pageStart
@@ -31,6 +35,8 @@ public interface PostDAO {
 			, @Param("userId") int userId);
 	
 	public int selectNumber(@Param("category") String category);
+	
+	public int selectSearchInput(@Param("searchInput") String searchInput);
 	
 	public int selectMyNumber(@Param("userId") int userId);
 	

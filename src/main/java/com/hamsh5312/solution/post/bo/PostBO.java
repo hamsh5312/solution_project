@@ -58,6 +58,15 @@ public class PostBO {
 	}
 	
 	
+	public List<Post> getSearchWorryList(PageMaker pageMaker, String searchInput){
+		
+		int pageStart = pageMaker.getCri().getPageStart();
+		int perPageNum = pageMaker.getCri().getPerPageNum();
+		
+		return postDAO.selectSearchWorryList(pageStart, perPageNum, searchInput);
+	}
+	
+	
 	public List<Post> getMyWorryList(PageMaker myPageMaker, int userId){
 		
 		int pageStart = myPageMaker.getCri().getPageStart();
@@ -68,6 +77,10 @@ public class PostBO {
 	
 	public int countNumber(String category) {
 		return postDAO.selectNumber(category);
+	}
+	
+	public int countSearchInput(String searchInput) {
+		return postDAO.selectSearchInput(searchInput);
 	}
 	
 	public int countMyNumber(int userId) {

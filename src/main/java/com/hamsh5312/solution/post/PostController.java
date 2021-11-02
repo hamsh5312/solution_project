@@ -19,6 +19,7 @@ import com.hamsh5312.solution.post.bo.PostBO;
 import com.hamsh5312.solution.post.model.Post;
 import com.hamsh5312.solution.post.model.PostDetail;
 import com.hamsh5312.solution.post.recommend.bo.RecommendBO;
+import com.hamsh5312.solution.post.recommend.model.Recommend;
 import com.hamsh5312.solution.post.recommend.model.RecommendInfo;
 import com.hamsh5312.solution.user.model.User;
 
@@ -36,11 +37,13 @@ public class PostController {
 		return "post/createView";
 	}
 	
+	
 	@GetMapping("/list_view")
 	public String listView(
 			Model model
 			, @RequestParam(value= "page" , required = false) Integer page
 			, @RequestParam(value ="category", required =false) String category
+			, @RequestParam(value ="searchInput", required =false) String searchInput
 			//, RedirectAttributes redAttr
 			) {
 		
@@ -51,25 +54,33 @@ public class PostController {
 		}
 		pageMaker.setCri(cri);
 		
-		String categoryStatus = category;
-		String sBox;
-		if(categoryStatus == null) {
-			 sBox = "all";
+		if(searchInput != null) {
+			// 검색어가 뭔가 들어오면
+			int searchNumber = postBO.countSearchInput(searchInput);
+			pageMaker.setTotalCount(searchNumber);
+			model.addAttribute("pageMaker", pageMaker);
+			List<Post> worryList = postBO.getSearchWorryList(pageMaker, searchInput);
+			model.addAttribute("worryList", worryList);
+			
 		}else {
-			sBox = category;
+			String categoryStatus = category;
+			String sBox;
+			if(categoryStatus == null) {
+				 sBox = "all";
+			}else {
+				sBox = category;
+			}
+			
+			int number = postBO.countNumber(sBox);
+			pageMaker.setTotalCount(number);
+			model.addAttribute("pageMaker", pageMaker);
+			
+			List<Post> worryList = postBO.getWorryList(pageMaker, sBox);
+			model.addAttribute("worryList", worryList);
 		}
-		
-		int number = postBO.countNumber(sBox);
-		pageMaker.setTotalCount(number);
-		model.addAttribute("pageMaker", pageMaker);
-		
-		List<Post> worryList = postBO.getWorryList(pageMaker, sBox);
-		model.addAttribute("worryList", worryList);
-		//redAttr.addAttribute("category", "all");
-		
+
 		return "post/listView";
 	}
-	
 	
 	
 	@GetMapping("/my_view")
@@ -154,12 +165,15 @@ public class PostController {
 	
 	@GetMapping("/product_view")
 	public String productView(
-			Model model
-			) {
+			Model model) {
 		
 		List<String> top3People = recommendBO.getTop3People();
 		
 		model.addAttribute("top3People",top3People);
+		
+		
+		List<Recommend> top5People = recommendBO.getRecommendRankingList();
+		model.addAttribute("top5People",top5People);
 		
 		return "post/productView";
 		

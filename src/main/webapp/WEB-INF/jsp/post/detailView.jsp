@@ -75,22 +75,21 @@
 				<div class="card border rounded">
 					<span><b>${commentDetail.comment.userName }</b> ${commentDetail.comment.content }</span>
 					<div class="d-flex justify-content-end">
-						<input type="button" class="mr-4" style="width:50px;" value="채택">
 						
 						<c:choose>
 							<c:when test="${commentDetail.recommend }">
-								<a href="#" class="recommendBtn" data-comment-id="${commentDetail.comment.id }">
-									<i class="bi bi-hand-index-thumb-fill text-success"></i>
+								<a href="#" class="recommendBtn mr-3" data-comment-id="${commentDetail.comment.id }">
+									<i class="bi bi-hand-index-thumb-fill text-success" style="font-size:25px;"></i>
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a href="#" class="recommendBtn" data-comment-id="${commentDetail.comment.id }">
-									<i class="bi bi-hand-index-thumb text-dark"></i>
+								<a href="#" class="recommendBtn mr-3" data-comment-id="${commentDetail.comment.id }">
+									<i class="bi bi-hand-index-thumb text-dark" style="font-size:25px;"></i>
 								</a>
 							</c:otherwise>
 						</c:choose>
 						
-						<span class="mr-1">추천 ${commentDetail.recommendCount }개</span>
+						<span class="mr-2" style="font-size:20px;">추천 ${commentDetail.recommendCount }개</span>
 						
 					</div>	
 				</div>

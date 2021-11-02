@@ -26,6 +26,11 @@
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+<!-- 뽑기 설정 셋팅 -->
+<script src="https://cdn.sobekrepository.org/includes/jquery-rotate/2.2/jquery-rotate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<link rel="stylesheet" href="/static/css/circle.css">
+  	
 <style>
 	*{margin: 0; padding:0; }
 	.slide-wrap{
@@ -104,14 +109,60 @@
 			<div class="w-75 my-2 text-center">
 				<h2 class="pt-5">TOP 3</h2>
 				<img class="pb-3" src="/static/images/product_image.jpg" width="150" height="150">
+				
 				<c:forEach var="top3" items="${top3People }" varStatus="status">
 					<h2>${top3 }님 ${status.index + 1 } 등 축하드립니다.</h2>
-					<br>
+					<br>		
 				</c:forEach>
+				
+				<c:forEach var="top5" items="${top5People }" varStatus="status">
+				
+						<c:if test="${top5.commentCreateUserName ne top3People.get(0)}">
+							<c:if test="${top5.commentCreateUserName ne top3People.get(1)}">
+								<c:if test="${top5.commentCreateUserName ne top3People.get(2)}">
+									<h5>${top5.commentCreateUserName }님 ${status.index + 1 } 등 축하드립니다.</h5>
+									
+								</c:if>
+							</c:if>
+						</c:if>
+						<!-- 4등 5등을 뽑아지는데 다른방법 없나? 다시시도 하자 -->
+				</c:forEach>
+				
+				
 			</div>
 		</div>
 			
 		</section>
+		
+		<div>
+			<!-- 뽑기 -->
+			<h2 class="title">4등은 아쉬우니까! 한 번 더 기회를!</h2>
+			
+			<div class="box-roulette">
+				<div class="markers"></div>
+				<c:choose>
+					<c:when test="${top5People.get(3).commentCreateUserName eq  userName }">
+						<button type="button" id="btn-start" value="fourth">
+							뽑기 시작
+						</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" id="btn-start" value="NotFourth">
+							뽑기 시작
+						</button>
+					</c:otherwise>
+				</c:choose>
+				<div class="roulette" id="roulette"></div>
+			</div>
+			
+		</div>
+		
+		
+		<!-- 아래 스크립트에서 바로아래 div 안에  태그를 삽입하는문장이 있음. -->
+		<div id="insert" class="text-center" style="font-weight:bold; font-size:40px;">
+			
+		</div>
+		
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
@@ -121,9 +172,12 @@
 		
 		$(function(){
 			
+			
 			// 슬라이드로 실행할 영역을 변수로 지정
 			var $slide = $('#gallery');
 			
+			var click = 0;
+			  
 			//실행
 			var gal = $slide.slippry({
 				// 옵션
@@ -132,6 +186,204 @@
 				easing: 'linear'
 				
 			});
+			
+			
+			// 아래는 뽑기 관련 코드
+			  $.fn.extend({
+	
+			    roulette: function(options) {
+	
+			      var defaults = {
+			        angle: 0,
+			        angleOffset: -45,
+			        speed: 5000,
+			        easing: "easeInOutElastic",
+			      };
+	
+			      var opt = $.extend(defaults, options);
+	
+			      return this.each(function() {
+			        var o = opt;
+	
+			        var data = [
+								{
+			            color: '#3f297e',
+			            text: '모니터'    // 12
+			          },
+			          {
+			            color: '#1d61ac',
+			            text: '가방'  // 11
+			          },
+			          {
+			            color: '#169ed8',
+			            text: '신라면'  // 10
+			          },
+			          {
+			            color: '#209b6c',
+			            text: '꽝'  // 9
+			          },
+			          {
+			            color: '#60b236',
+			            text: '모니터'   // 8
+			          },
+			          {
+			            color: '#efe61f',
+			            text: '가방'   // 7
+			          },
+			          {
+			            color: '#f7a416',
+			            text: '신라면'   // 6
+			          },
+			          {
+			            color: '#e6471d',
+			            text: '꽝'    // 5
+			          },
+			          {
+			            color: '#dc0936',
+			            text: '모니터'   // 4
+			          },
+			          {
+			            color: '#e5177b',
+			            text: '가방'    // 3
+			          },
+			          {
+			            color: '#be107f',
+			            text: '신라면'   // 2
+			          },
+			          {
+			            color: '#881f7e',
+			            text: '꽝'    // 1
+			          }
+			        ];
+					
+			        var $wrap = $(this);
+			        var $btnStart = $wrap.find("#btn-start");
+			        var $roulette = $wrap.find(".roulette");
+			        var wrapW = $wrap.width();
+			        var angle = o.angle;
+			        var angleOffset = o.angleOffset;
+			        var speed = o.speed;
+			        var esing = o.easing;
+			        var itemSize = data.length;
+			        var itemSelector = "item";
+			        var labelSelector = "label";
+			        var d = 360 / itemSize;
+			        var borderTopWidth = wrapW;
+			        var borderRightWidth = tanDeg(d);
+	
+			        for (i = 1; i <= itemSize; i += 1) {
+			          var idx = i - 1;
+			          var rt = i * d + angleOffset;
+			          var itemHTML = $('<div class="' + itemSelector + '">');
+			          var labelHTML = '';
+			              labelHTML += '<p class="' + labelSelector + '">';
+			              labelHTML += '	<span class="text">' + data[idx].text + '<\/span>';
+			              labelHTML += '<\/p>';
+	
+			          $roulette.append(itemHTML);
+			          $roulette.children("." + itemSelector).eq(idx).append(labelHTML);
+			          $roulette.children("." + itemSelector).eq(idx).css({
+			            "left": wrapW / 2,
+			            "top": -wrapW / 2,
+			            "border-top-width": borderTopWidth,
+			            "border-right-width": borderRightWidth,
+			            "border-top-color": data[idx].color,
+			            "transform": "rotate(" + rt + "deg)"
+			          });
+	
+			          var textH = parseInt(((2 * Math.PI * wrapW) / d) * .5);
+	
+			          $roulette.children("." + itemSelector).eq(idx).children("." + labelSelector).css({
+			            "height": textH + 'px',
+			            "line-height": textH + 'px',
+			            "transform": 'translateX(' + (textH * 1.3) + 'px) translateY(' + (wrapW * -.3) + 'px) rotateZ(' + (90 + d * .5) + 'deg)'
+			          });
+	
+			        }
+	
+			        function tanDeg(deg) {
+			          var rad = deg * Math.PI / 180;
+			          return wrapW / (1 / Math.tan(rad));
+			        }
+	
+	
+			        $btnStart.on("click", function() {
+			        	var BtnValue = $(this).val();
+			        	
+			       		
+			        	
+			        	if(BtnValue == "NotFourth"){
+			        		alert("4등만 참여할 수 있습니다.");
+			        		return ;
+			        	}
+			        	
+			        	
+		        	  if(click > 0){
+						  alert("이미 이벤트에 참여했습니다.");
+						  return ;
+					  }	
+		        	  
+			          rotation();
+			          
+			        });
+	
+			        function rotation() {
+	
+			          var completeA = 360 * r(1, 2) + r(0, 360);
+					
+			          $roulette.rotate({
+			            angle: angle,
+			            animateTo: completeA,
+			            center: ["50%", "50%"],
+			            easing: $.easing.esing,
+			            callback: function() {
+			              var currentA = $(this).getRotateAngle();
+							
+			              console.log(angle);
+			              console.log(completeA);
+			              var currentA_value = (currentA % 360 + 15) / (360 / 12);
+			              console.log((currentA % 360 + 15) / (360 / 12));
+			              
+			              currentA_value = Math.floor(currentA_value);
+			              
+			              console.log(currentA_value);
+			              
+			              if(currentA_value == 1 || currentA_value == 5 || currentA_value == 9){  // 1, 3, 5, 7 만 꽝으로 설정
+			            	  $("#insert").text("4등의 상품은....꽝입니다 ㅎㅎ ㅠㅠ");
+			              }else if(currentA_value == 2 || currentA_value == 6 || currentA_value == 10){
+			            	  $("#insert").text("4등은 신라면 " + "상품을 드릴게요.");
+			            	  
+			              }else if(currentA_value == 3 || currentA_value == 7 || currentA_value == 11){
+			            	  $("#insert").text("4등은 가방 " + "상품을 드릴게요.");
+			              }else{
+			            	  $("#insert").text("4등은 모니터 " + "상품을 드릴게요.");
+			              }    
+						  
+			              click++;
+			              
+			              
+			            },
+			            duration: speed
+			          });
+			        }
+					
+			        function r(min, max) {
+			          return Math.floor(Math.random() * (max - min + 1)) + min;
+			        }
+					
+			      });
+			    }
+			  });
+			
+			
+			$(function() {
+						
+			  $('.box-roulette').roulette();	
+	        	
+			});
+
+			
+			
 			
 		});
 		
