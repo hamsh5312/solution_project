@@ -71,7 +71,7 @@
  	
  		SELECT
  			
- 			, `commentCreateUserName`
+ 			`commentCreateUserName`
  			, count(commentId)
  			
  		FROM
