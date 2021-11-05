@@ -22,6 +22,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/images/**")     // images/3_3295124124/test.png
 		.addResourceLocations("file:" + FileManagerService.FILE_UPLOAD_PATH);
 		
+// 위에는  서버 경로 파일인거고  아래는 내 로컬 서버에 있는 파일경로이다. 이거를 수정해서 FileManagerService 쪽가서도 대응하여 수정
+		
 		//  .addResourceLocations("file:///" + FileManagerService.FILE_UPLOAD_PATH);
 		
 	}

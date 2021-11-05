@@ -11,6 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManagerService {
 
 //	public final static String FILE_UPLOAD_PATH = "C:\\springMarondalAnswer\\TestAnswer\\solutionProject_upload\\images/";  
+	
+	// 위에는 내 로컬서버에서 테스트할때 필요한 파일경로이고 아래는 서버에서의 파일경로이다.
+	
 	public final static String FILE_UPLOAD_PATH = "/home/ec2-user/uploads/";
 		
 	public static String saveFile(int userId, MultipartFile file) {
