@@ -70,11 +70,10 @@
  	<select id="selectRecommendRankingList" resultType="com.hamsh5312.solution.post.recommend.model.Recommend">
  	
  		SELECT
- 			`id`
+ 			
  			, `commentCreateUserName`
  			, count(commentId)
- 			, `userId`
- 			, `createdAt`
+ 			
  		FROM
  			`recommend`
  		GROUP BY `commentCreateUserName`
