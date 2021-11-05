@@ -31,10 +31,31 @@
 			
 			<div class="w-75 my-4">
 			
-				<div class="d-flex justify-content-between">
-					<h1 class="text-center">고민 보기</h1>
-					<h5 class="pt-2">고민종류 : ${post.sBox }</h5>
-					<h5 class="pt-2">게시자 : ${post.userName}</h5>
+				<div class="d-flex">
+					
+					<h1 class="text-center">고민</h1>
+					<c:if test="${post.userName ne userName }">
+						<c:choose>
+							<c:when test="${postDetail.like }">
+								<div class="d-flex justify-content-start">
+									<a href="#" class="likeBtn pt-1" data-post-id="${postDetail.post.id }">
+										<i class="bi bi-heart-fill heart-icon text-danger ml-2" style="font-size:25px;"></i>
+									</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="d-flex justify-content-start">
+									<a href="#" class="likeBtn pt-1" data-post-id="${postDetail.post.id }">
+										<i class="bi bi-heart heart-icon text-dark ml-2" style="font-size:25px;"></i>
+									</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					
+					<h5 class="pt-3 ml-5">고민종류 : ${post.sBox }</h5>
+					<h5 class="pt-3 ml-5">게시자 : ${post.userName}</h5>
+					
 				</div>
 				
 				<div class="d-flex my-3">
@@ -71,24 +92,26 @@
 				</div>
 				</c:if>
 				
+				
 				<c:forEach var="commentDetail" items="${postDetail.commentDetailList }">
 				<div class="card border rounded">
 					<span><b>${commentDetail.comment.userName }</b> ${commentDetail.comment.content }</span>
 					<div class="d-flex justify-content-end">
 						
-						<c:choose>
-							<c:when test="${commentDetail.recommend }">
-								<a href="#" class="recommendBtn mr-3" data-comment-id="${commentDetail.comment.id }">
-									<i class="bi bi-hand-index-thumb-fill text-success" style="font-size:25px;"></i>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="#" class="recommendBtn mr-3" data-comment-id="${commentDetail.comment.id }">
-									<i class="bi bi-hand-index-thumb text-dark" style="font-size:25px;"></i>
-								</a>
-							</c:otherwise>
-						</c:choose>
-						
+						<c:if test="${commentDetail.comment.userName ne userName }">
+							<c:choose>
+								<c:when test="${commentDetail.recommend }">
+									<a href="#" class="recommendBtn mr-3" data-comment-id="${commentDetail.comment.id }">
+										<i class="bi bi-hand-index-thumb-fill text-success" style="font-size:25px;"></i>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" class="recommendBtn mr-3" data-comment-id="${commentDetail.comment.id }">
+										<i class="bi bi-hand-index-thumb text-dark" style="font-size:25px;"></i>
+									</a>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 						<span class="mr-2" style="font-size:20px;">추천 ${commentDetail.recommendCount }개</span>
 						
 					</div>	
@@ -213,6 +236,31 @@
 			});
 			
 			
+			$(".likeBtn").on("click", function(e){
+				e.preventDefault();
+				
+				var postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/like",
+					data:{"postId":postId},
+					success:function(data){
+						if(data.result == "success"){
+							location.reload();
+						}else if(data.result == "fail"){
+							alert("좋아요 실패");
+						}else{  // data.result == "noLogin"
+							alert("로그인한 경우만 좋아요를 할 수 있습니다.");
+						}
+					},
+					error: function(e){
+						alert("error");
+					}
+					
+				});
+				
+			});
 			
 			
 			

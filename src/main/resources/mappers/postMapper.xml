@@ -54,7 +54,7 @@
  	</select>
  	
  	
- 		<select id="selectSearchWorryList" resultType="com.hamsh5312.solution.post.model.Post"
+ 	<select id="selectSearchWorryList" resultType="com.hamsh5312.solution.post.model.Post"
  	parameterType="map">
  	
  		SELECT
@@ -78,7 +78,7 @@
  	
  	<select id="selectMyWorryList" resultType="com.hamsh5312.solution.post.model.Post"
  	parameterType="map">
- 	
+ 		
  		SELECT
  			`id`
  			, `userId`
@@ -97,7 +97,117 @@
 		
  	</select>
  	
+ 	<!-- 찜 관련 -->
+	
+	<select id="selectLikeWorryList" resultType="com.hamsh5312.solution.post.model.Post"
+ 	parameterType="map">
+ 		
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+   		WHERE
+   		<if test="likePostIdList.size != 0">
+	   		`id` IN
+		   		<foreach collection="likePostIdList" item="item" index="index" open="(" close=")" separator=",">
+					#{item }
+				</foreach>	
+			
+	 		ORDER BY `id` DESC	
+			LIMIT #{pageStart}, #{perPageNum}
+		</if>
+		<if test="likePostIdList.size == 0">
+			`sBox`= 1
+		</if>
+ 	</select>
+	
+	
+	<select id="selectCountLikeByUserIdPostId" parameterType="map" resultType="int">
  	
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 			AND `userId` = #{userId}
+ 	</select>
+ 	
+ 	<insert id="insertLike" parameterType="map">
+	 	INSERT INTO `like`
+	 	(
+	 		`userId`
+	 		, `postId`
+	 		, `createdAt`
+	 		
+	 	) VALUES(
+	 		#{userId }
+	 		, #{postId }
+	 		, now()
+	 	)
+ 		
+ 	</insert>
+ 	
+ 	<delete id="deleteLike">
+ 	
+ 		DELETE
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId}
+ 			AND `userId` = #{userId}
+ 	
+ 	</delete>
+ 	
+ 	
+ 	<select id="selectLikePost" resultType="int"
+ 	parameterType="int">
+ 	
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`like`
+   		WHERE `userId` = #{userId}	
+		
+ 	</select>
+ 	
+ 	<select id="selectPostList" resultType="com.hamsh5312.solution.post.model.Post">
+ 		
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `sBox`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 	
+ 	</select>
+ 	
+ 	<select id="selectLikePostIdByUserId" resultType="Integer"
+ 	parameterType="int">
+ 	
+ 		SELECT
+ 			`postId`
+ 		FROM
+ 			`like`
+   		WHERE `userId` = #{userId}	
+ 	
+ 	</select>
+ 	
+ 	<!-- 찜관련 끝 -->
  	<select id="selectNumber" resultType="int"
  	parameterType="String">
  		SELECT
@@ -220,5 +330,16 @@
  	
  	</select>
  	
+ 	<!-- 찜삭제 -->
+ 	
+ 	<delete id="deleteLikeByPostId" parameterType="int">
+ 	
+ 		DELETE
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`postId` = #{postId }
+ 		
+ 	</delete>
  	
  </mapper>

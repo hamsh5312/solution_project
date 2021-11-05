@@ -24,7 +24,7 @@ import com.hamsh5312.solution.post.model.PostDetail;
 import com.hamsh5312.solution.post.recommend.bo.RecommendBO;
 import com.hamsh5312.solution.post.recommend.model.Recommend;
 import com.hamsh5312.solution.post.recommend.model.RecommendInfo;
-import com.hamsh5312.solution.post.recommend.model.fourthPeople;
+
 import com.hamsh5312.solution.user.model.User;
 
 @Controller
@@ -106,10 +106,38 @@ public class PostController {
 		myPageMaker.setTotalCount(myNumber);
 		model.addAttribute("pageMaker", myPageMaker);
 		
-		List<Post> myWorryList = postBO.getMyWorryList(myPageMaker, userId);
-		model.addAttribute("myWorryList", myWorryList);
+		List<Post> worryList = postBO.getMyWorryList(myPageMaker, userId);
+		model.addAttribute("worryList", worryList);
+		// post/myView 에서 post/listView 로 바꿈
+		return "post/listView";
+	}
+	
+	
+	@GetMapping("/my_like_view")
+	public String likeView(
+			Model model
+			, @RequestParam(value= "page" , required = false) Integer page
+			, HttpServletRequest request) {
 		
-		return "post/myView";
+		PageMaker myPageMaker = new PageMaker();
+		Criteria cri = new Criteria();
+		if(page != null) {
+			cri.setPage(page);
+		}
+		myPageMaker.setCri(cri);
+		
+		HttpSession session = request.getSession();
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		int likeNumber = postBO.countLikePost(userId);
+		
+		myPageMaker.setTotalCount(likeNumber);
+		model.addAttribute("pageMaker", myPageMaker);
+		
+		List<Post> worryList = postBO.getLikePostList(myPageMaker, userId);
+		model.addAttribute("worryList", worryList);
+		
+		return "post/listView";
 	}
 	
 	
@@ -123,6 +151,9 @@ public class PostController {
 		
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
+		
+		String userName = (String)session.getAttribute("userName");
+		model.addAttribute("userName", userName);
 		
 		PostDetail postDetail = postBO.getPostList(userId, id);
 		model.addAttribute("postDetail", postDetail);
@@ -168,9 +199,7 @@ public class PostController {
 			Model model) {
 		
 		List<String> top3People = recommendBO.getTop3People();
-		
 		model.addAttribute("top3People",top3People);
-		
 		
 		List<Recommend> top5People = recommendBO.getRecommendRankingList();
 		model.addAttribute("top5People",top5People);
@@ -187,12 +216,16 @@ public class PostController {
 		// formattedDate 에는 2021-11 이 저장 되어있다고 판단함.. 확인은?
 		
 		// 날짜 정보를 출력해보자
-		
         String dateInfo = recommendBO.chooseBonusPeople(startDate, endDate);
-        
 		model.addAttribute("dateInfo",dateInfo);
-		model.addAttribute("formattedDate",formattedDate);
+		
+		// 상품 수령할 수 있는 1등부터 4등까지의 4명의 정보를 List<User> 의 productReceiveList 변수를 만들 때 조건을
+		// 그 productReceiveList에 파라미터값으로 총 4개를 입력해주자. 
+		// top5People.get(0), top5People.get(0), top5People.get(0), top5People.get(0) 이렇게 4개의 파라미터를 전달
+		// 그래서 그 리스트결과를 모델로 넘겨주어서 jsp 쪽에서 하나씩 그 리스트에서 이메일정보를 뽑아서 " ~님 ~이메일에서 상품 안내정보를 확인하세요"
+		
 		return "post/productView";
+		
 		
 	}
 	

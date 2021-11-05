@@ -66,6 +66,7 @@ public class PostRestController {
 	}
 	
 	
+	
 	@GetMapping("/delete")
 	public Map<String ,String> delete(@RequestParam("postId") int postId
 			, HttpServletRequest request){
@@ -139,6 +140,30 @@ public class PostRestController {
 		
 	}
 	
+	
+	@GetMapping("/like")
+	public Map<String, String> like(
+			@RequestParam("postId") int postId
+			, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(userId != null) {
+			boolean isLike = postBO.like(userId, postId);
+			if(isLike) {
+				result.put("result","success");			
+			}else {
+				result.put("result", "fail");
+			}	
+		}else {  // userId 가 null 일경우, 즉 비로그인 상태로 접속할 경우 좋아요는 실패하고 알림창뜨게 첫 세팅
+			result.put("result","noLogin");
+		}
+		
+		return result;
+	}
 	
 	
 	

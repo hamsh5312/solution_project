@@ -91,13 +91,42 @@ public class PostBO {
 		return postDAO.selectPost(id);
 	}
 	
+	// 찜 한거 postId 총 몇개인 가져오자
+	public int countLikePost(int userId) {
+		return postDAO.selectLikePost(userId);
+	}
+	
+	// 찜 한거 postId 가져오자
+	public List<Integer> likePostIdByUserId(Integer userId){
+		return postDAO.selectLikePostIdByUserId(userId);
+	}
+	
+	// 찜목록 가져오자
+	public List<Post> getLikePostList(PageMaker myPageMaker, Integer userId){
+		
+		List<Integer> likePostIdList = likePostIdByUserId(userId);
+		
+		int pageStart = myPageMaker.getCri().getPageStart();
+		int perPageNum = myPageMaker.getCri().getPerPageNum();
+		
+		return postDAO.selectLikeWorryList(pageStart, perPageNum, likePostIdList);
+	
+		
+	}
+	
 	
 	// 고민내용 삭제하기전 해당 포스트를 쓴 사람만 삭제하도록하기위해서 게시물 체크
 	public Post postDeleteCheck(int id, int userId) {
 		return postDAO.selectDeletePost(id, userId);
 	}
 	
+	// post 삭제중 찜(like) 삭제
+	public int deleteLikeByPostId(int postId) {
+		return postDAO.deleteLikeByPostId(postId);
+	}
 	
+	
+	// post 삭제  ( post 삭제, 찜(like) 삭제, 댓글 삭제 , 추천 삭제 )
 	public int deletePost(int postId, int userId) {
 		
 		Post post = this.postDeleteCheck(postId, userId);
@@ -106,8 +135,35 @@ public class PostBO {
 			FileManagerService.removeFile(post.getImagePath());
 		}
 		
+		// 댓글, 추천, 찜 삭제 
+		// 우선 postId 를 넣어주었을때 그에 맞는 댓글 리스트를 뽑아오자
+		List<Comment> commentList = commentBO.getCommentListByPostId(postId);
+		// recommend 전체 반복을 돌리다가 하나하나씩 비교해봐 또하나의 commentList 반복문으로
+		// 추천리스트 뽑아 오자
+		List<Recommend> recommendList = recommendBO.getRecommendList();
+		
+		for(Recommend recommend : recommendList) {
+			
+			for(Comment comment : commentList) {
+				
+				if(recommend.getCommentId() == comment.getId()) {
+					int commentId = comment.getId();
+					recommendBO.deleteRecommendByCommentId(commentId);
+				}
+				
+			}
+			
+		}
+		
+		// 댓글 삭제  찜 삭제
+		commentBO.deleteCommentByPostId(postId);
+		deleteLikeByPostId(postId);
+		
+		
 		return postDAO.deletePost(postId, userId);
 	}
+	
+	
 	
 	
 	public int updatePost(int id, int userId, String subject, String content) {
@@ -141,12 +197,49 @@ public class PostBO {
 			commentDetailList.add(commentDetail);
 		}
 		
+		boolean isLike = likeByUserIdPostId(post.getId(), userId);
+		postDetail.setLike(isLike);
+		
 		postDetail.setPost(post);
 		postDetail.setCommentDetailList(commentDetailList);
 			
 		return postDetail;
 	}
 	
+	// 찜 관련 메소드
+	public boolean likeByUserIdPostId(int postId, int userId) {
+		int count = postDAO.selectCountLikeByUserIdPostId(postId, userId);
+		
+		if(count == 0) {
+			return false;
+		}else {
+			return true;
+		}	
+	}
+	
+	public boolean like(int userId, int postId) {
+			
+			// 찜 상태면 찜 취소
+			if(this.likeByUserIdPostId(postId, userId)) {
+				int count = postDAO.deleteLike(userId, postId);
+				if(count == 0) {
+					return false;
+				}else {
+					return true;
+				}
+			}else {  // 찜 취소 상태면 찜
+				int count = postDAO.insertLike(userId, postId);
+				if(count == 1) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			
+		}
+	
+	
+	//
 	
 	public List<User> getUserList(){ 
 		return userDAO.selectUser();

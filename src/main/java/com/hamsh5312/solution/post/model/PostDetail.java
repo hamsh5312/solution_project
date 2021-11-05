@@ -7,14 +7,22 @@ import com.hamsh5312.solution.post.comment.model.CommentDetail;
 public class PostDetail {
 
 	private Post post;
+	private boolean isLike;
 	// 아래 이전 변수명 commentList 를 commentDetailList 로 변경함
 	private List<CommentDetail> commentDetailList;
 	
 //	private boolean isRecommend;
 //	private int recommendCount;
 	
+	
 	public Post getPost() {
 		return post;
+	}
+	public boolean isLike() {
+		return isLike;
+	}
+	public void setLike(boolean isLike) {
+		this.isLike = isLike;
 	}
 	public void setPost(Post post) {
 		this.post = post;

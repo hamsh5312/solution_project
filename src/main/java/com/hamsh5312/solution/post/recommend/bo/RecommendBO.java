@@ -78,6 +78,16 @@ public class RecommendBO {
 	
 	//
 	
+	// 추천리스트 다 가져오기
+	public List<Recommend> getRecommendList() {
+		return recommendDAO.selectRecommendList();
+	}
+	
+	// 추천리스트 삭제
+	public int deleteRecommendByCommentId(int commentId) {
+		return recommendDAO.deleteRecommendByCommentId(commentId);
+	}
+	
 	public List<Recommend> getRecommendRankingList(){
 		return recommendDAO.selectRecommendRankingList();
 	}

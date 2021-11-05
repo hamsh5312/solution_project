@@ -133,4 +133,27 @@
  		LIMIT 5
  	</select>
  
+ 	<select id="selectRecommendList" resultType="com.hamsh5312.solution.post.recommend.model.Recommend">
+ 	
+ 		SELECT
+ 			`id`
+ 			, `commentCreateUserName`
+ 			, `commentId`
+ 			, `userId`
+ 			, `createdAt`
+ 		FROM
+ 			`recommend`
+ 	
+ 	</select>
+ 	
+ 	<!-- 추천삭제 -->
+ 	
+ 	<delete id="deleteRecommendByCommentId" parameterType="int">
+		DELETE
+		FROM 
+			`recommend`
+		WHERE
+			`commentId` = #{commentId}
+	</delete>
+ 	
  </mapper>

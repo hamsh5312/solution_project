@@ -165,6 +165,7 @@
 					<h2 class="text-center">4등은 보너스 게임에 참여해서 추가 상품에 도전하세요!</h2>		
 				</div>
 				
+				<!-- 여기아래에 상품 -->
 				<div id="fourthProduct" class="text-center" style="font-weight:bold; font-size:40px;">
 					
 				</div>
