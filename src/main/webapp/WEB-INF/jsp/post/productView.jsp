@@ -49,6 +49,8 @@
 </head>
 <body>
 
+	<c:choose>
+	<c:when test="${not empty top5People }">
 	<div id="wrap">
 	
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
@@ -184,12 +186,26 @@
 		<!-- 4등 상품 정보 있으면 아래꺼가 나오지 않게 -->
 		<!-- 4등의 상품정보가 없다면 아래꺼로 돌려서 나오는 결과를 삽입해주고 -->
 		<!-- 아래 스크립트에서 바로아래 div 안에  태그를 삽입하는문장이 있음. -->
-		
-		
+	
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
 	</div>
+	</c:when>
+	
+	<c:otherwise>
+		<div class="d-flex justify-content-center">
+			<img src="/static/images/product_image.jpg" width="300" height="300">
+		</div>	
+			<h2 class="text-center">데이터 값이 부족합니다. 데이터를 더 입력하세요!</h2>
+		
+	</c:otherwise>
+	
+	
+	</c:choose>
+	
+	
+	
 	
 	<script>
 		

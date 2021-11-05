@@ -43,8 +43,8 @@
 						<option value="hobby">취미</option>
 						<option value="game">놀이</option>
 						<option value="startUp">창업</option>
-						<option value="other" >기타</option>
-						<option selected value="all" >전체 선택</option>
+						<option value="other" selected>기타</option>
+						
 					</select>
 				</div>
 				<div class="d-flex justify-content-between my-3">
