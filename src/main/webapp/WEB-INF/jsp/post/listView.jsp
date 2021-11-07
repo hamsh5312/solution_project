@@ -45,7 +45,7 @@
 			
 			<div class="d-flex justify-content-center">
 				
-				<div class="list-box w-75 my-4">
+				<div class="list-box w-100 my-4">
 				
 				<!-- url 을 가져오기 위한 변수 설정 -->
 				<c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
