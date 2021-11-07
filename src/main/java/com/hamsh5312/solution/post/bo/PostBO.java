@@ -175,11 +175,6 @@ public class PostBO {
 		return postDAO.updatePost(id, userId, subject, content);
 	}
 	
-	// 조회수
-	public void increasePostHit(int id) {
-		postDAO.increasePostHit(id);
-	}
-	
 	
 	public PostDetail getPostList(Integer userId, int postId){
 		
