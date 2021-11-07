@@ -41,6 +41,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -65,6 +66,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -87,6 +89,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -110,6 +113,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -189,6 +193,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -253,6 +258,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -274,6 +280,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -309,6 +316,17 @@
  	
  	</update>
  	
+ 	<update id="increasePostHit" parameterType="int">
+ 	
+ 		UPDATE
+ 			`post`
+ 		SET
+ 			`hit` = `hit` + 1
+ 		WHERE 
+ 			`id` = #{id}
+ 	
+ 	</update>
+ 	
  	
  	<select id="selectWorry" resultType="com.hamsh5312.solution.post.model.Post"
  	parameterType="int">
@@ -321,6 +339,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		FROM

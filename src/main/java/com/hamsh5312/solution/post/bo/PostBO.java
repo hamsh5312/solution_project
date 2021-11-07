@@ -170,6 +170,10 @@ public class PostBO {
 		return postDAO.updatePost(id, userId, subject, content);
 	}
 	
+	// 조회수
+	public void increasePostHit(int id) {
+		postDAO.increasePostHit(id);
+	}
 	
 	
 	public PostDetail getPostList(Integer userId, int postId){
@@ -277,7 +281,6 @@ public class PostBO {
 	
 	
 	public List<RecommendInfo> getRecommendInfoList(){
-		
 		// 포스트 컨트롤러에서 아래 식이 있었음.. 활용하기
 //		List<Recommend> recommendList = recommendBO.getRecommendRankingList();
 		
@@ -292,7 +295,6 @@ public class PostBO {
 			recommendInfo.setRecommend(recommend);
 			
 			// 전체 추천수를  set 하자
-			
 			for( ; i < personTotalRecommendList.size(); ) {
 				// 여기에 어떤 조건을 주어서 하나씩만 set 하고싶은데... 아래방법이 맞는건가 ... 음
 				recommendInfo.setPersonTotalRecommend(personTotalRecommendList.get(i));

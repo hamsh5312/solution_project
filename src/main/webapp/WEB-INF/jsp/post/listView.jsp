@@ -139,6 +139,8 @@
 										<th>No.</th>
 										<th>제목</th>
 										<th>작성자</th>
+										<th>조회수</th>
+										<th>생성 날짜</th>
 									</tr>
 								</thead>
 								
@@ -152,6 +154,8 @@
 										<td>${worry.id }</td>
 										<td><a href="/post/detail_view?id=${worry.id }">${worry.subject }</a></td>
 										<td>${worry.userName }</td>
+										<td>${worry.hit }</td>
+										<td><fmt:formatDate value="${worry.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 									</tr>
 									</c:forEach>
 																						

@@ -68,7 +68,7 @@
 	</delete>
  	
  	<select id="selectRecommendRankingList" resultType="com.hamsh5312.solution.post.recommend.model.Recommend">
- 	
+ 		<!-- 여기아래에 원래 id랑 userId 랑 createdAt 있었는데  로컬쪽은 상관없었는데 서버쪽 mysql 버전과 호환이 되지않아 삭제했음 -->
  		SELECT
  			
  			`commentCreateUserName`
