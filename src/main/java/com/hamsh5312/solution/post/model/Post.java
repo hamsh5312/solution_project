@@ -11,6 +11,7 @@ public class Post {
 	private String content;
 	private String imagePath;
 	private String sBox;
+	private int hit;
 	private Date createdAt;
 	private Date updatedAt;
 	
