@@ -34,6 +34,9 @@ public interface PostDAO {
 			, @Param("perPageNum") int perPageNum
 			, @Param("userId") int userId);
 	
+	// 조회수
+	public void increasePostHit(@Param("id") int id);
+	
 	// 찜 관련 
 	
 	public List<Post> selectLikeWorryList(

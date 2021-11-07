@@ -20,9 +20,20 @@ header{
     font-weight: bold;
 }
 .nav > .nav-item > a:hover {
-    background-color:rgb(238, 156, 75);
+    background-color:#F05650;
 }
 
+#horizontal-underline{
+    position: absolute;
+    left:0;
+    height: 7px;
+    width: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    background-color: #35E884;
+    top:0;
+
+}
 
 .button-myBox{
 	background-color:#A0C6E3;

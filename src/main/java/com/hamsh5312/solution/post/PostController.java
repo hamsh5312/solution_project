@@ -149,6 +149,9 @@ public class PostController {
 			, Model model
 			, HttpServletRequest request) {
 		
+		// 조회수 증가
+		postBO.increasePostHit(id);
+		
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
 		

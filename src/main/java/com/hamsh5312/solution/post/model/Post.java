@@ -57,6 +57,12 @@ public class Post {
 	public void setsBox(String sBox) {
 		this.sBox = sBox;
 	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 	public Date getCreatedAt() {
 		return createdAt;
 	}
