@@ -53,15 +53,17 @@
 						</c:choose>
 					</c:if>
 					
-					<h5 class="pt-3 ml-5">고민종류 : ${post.sBox }</h5>
-					<h5 class="pt-3 ml-5">게시자 : ${post.userName}</h5>
-					<h5 class="pt-2 ml-5"><span class="word-style">조회수:</span>${post.hit }</h5>
-					<h5 class="pt-2 ml-5"><span class="word-style">생성 날짜:</span><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></h5>	
-					
 				</div>
 				
+				<div class="d-flex justify-content-start">
+					<h5 class="pt-2"><span class="word-style">고민종류:</span>${post.sBox }</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">게시자:</span>${post.userName}</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">조회수:</span>${post.hit }</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">생성 날짜:</span><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></h5>					
+				</div>
+			
 				<div class="d-flex my-3">
-					<label class="mr-3 mt-2"><h5>제목 : </h5></label>
+					<label class="mr-3 mt-1"><h5>제목 : </h5></label>
 					<input type="text" class="form-control col-11" id="titleInput" value="${post.subject }">
 				</div>
 				
