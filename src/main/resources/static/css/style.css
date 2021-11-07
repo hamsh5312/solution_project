@@ -8,6 +8,10 @@
 	
 }
 
+.word-style{
+	font-family: courier;
+}
+
 header{
 	height:80px;
 	margin:auto;

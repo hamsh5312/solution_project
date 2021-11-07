@@ -50,147 +50,147 @@
 <body>
 
 	<c:choose>
-	<c:when test="${not empty top5People }">
-	<div id="wrap">
-	
-		<c:import url="/WEB-INF/jsp/include/header.jsp" />
-		<hr>
+	<c:when test="${not empty top5People && top5People.size() == 5}">
+		<div id="wrap">
 		
-		<section>
-			<div>
-				<nav class="mt-1">
-					<ul class="nav nav-fill">
-                        <li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/post/list_view">고민 리스트</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/post/ranking_view">고민 해결 순위</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/post/product_view">이번달 상품 종류</a></li>
-                    </ul>
-				</nav>
-			</div>
-		
-		<!-- 지난달 상품 사진 올리기 -->
-		<h3 class="text-center mt-4">지난달 상품</h3>
-		<div>
-			<div class="d-flex justify-content-center mt-4">
-				<div>
-					<img src="/static/images/laptop.jpg" width="200" height="200">
-					<div class="text-center mt-2">
-						노트북(1)
-					</div>
-				</div>
-				<div class="ml-2">
-					<img src="/static/images/camera.jpg" width="200" height="200">
-					<div class="text-center mt-2">
-						카메라(2)
-					</div>
-				</div>
-				<div class="ml-2">
-					<img src="/static/images/microphone.jpg" width="200" height="200">
-					<div class="text-center mt-2">
-						무선 마이크(3)
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 이번 달 상품 -->
-		<div id="slide-wrap">
-			<h1 class="text-center mt-4">이번 달 상품</h1>
-			<article class="d-flex justify-content-center">
-				<!-- 이미지 슬라이드 -->
-				<div class="w-50 my-2">
-					<ul id="gallery">
-						<li><a href="#slide1"><img src="/static/images/TV.jpg" height="400" alt="1등 상품(TV)"></a></li>
-						<li><a href="#slide2"><img src="/static/images/iPad.jpg" height="400" alt="2등 상품(아이패드)"></a></li>
-						<li><a href="#slide3"><img src="/static/images/AirPods.jpg" height="400" alt="3등 상품(에어팟)"></a></li>
-					</ul>
-				</div>				
-			</article>
-		</div>	
+			<c:import url="/WEB-INF/jsp/include/header.jsp" />
+			<hr>
 			
-		<div class="d-flex justify-content-center align-items-center">
-			<div class="w-75 my-2 text-center">
-				<h2 class="pt-5">TOP 3</h2>
-				<img class="pb-3" src="/static/images/product_image.jpg" width="150" height="150">
+			<section>
+				<div>
+					<nav class="mt-1">
+						<ul class="nav nav-fill">
+	                        <li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="/post/list_view">고민 리스트</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="/post/ranking_view">고민 해결 순위</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="/post/product_view">이번달 상품 종류</a></li>
+	                    </ul>
+					</nav>
+				</div>
+			
+			<!-- 지난달 상품 사진 올리기 -->
+			<h3 class="text-center mt-4">지난달 상품</h3>
+			<div>
+				<div class="d-flex justify-content-center mt-4">
+					<div>
+						<img src="/static/images/laptop.jpg" width="200" height="200">
+						<div class="text-center mt-2">
+							노트북(1)
+						</div>
+					</div>
+					<div class="ml-2">
+						<img src="/static/images/camera.jpg" width="200" height="200">
+						<div class="text-center mt-2">
+							카메라(2)
+						</div>
+					</div>
+					<div class="ml-2">
+						<img src="/static/images/microphone.jpg" width="200" height="200">
+						<div class="text-center mt-2">
+							무선 마이크(3)
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 이번 달 상품 -->
+			<div id="slide-wrap">
+				<h1 class="text-center mt-4">이번 달 상품</h1>
+				<article class="d-flex justify-content-center">
+					<!-- 이미지 슬라이드 -->
+					<div class="w-50 my-2">
+						<ul id="gallery">
+							<li><a href="#slide1"><img src="/static/images/TV.jpg" height="400" alt="1등 상품(TV)"></a></li>
+							<li><a href="#slide2"><img src="/static/images/iPad.jpg" height="400" alt="2등 상품(아이패드)"></a></li>
+							<li><a href="#slide3"><img src="/static/images/AirPods.jpg" height="400" alt="3등 상품(에어팟)"></a></li>
+						</ul>
+					</div>				
+				</article>
+			</div>	
 				
-				<c:forEach var="top3" items="${top3People }" varStatus="status">
-					<h2>${top3 }님 ${status.index + 1 } 등 축하드립니다.</h2>
-					<br>		
-				</c:forEach>
-				
-				<c:forEach var="top5" items="${top5People }" varStatus="status">
-				
-						<c:if test="${top5.commentCreateUserName ne top3People.get(0)}">
-							<c:if test="${top5.commentCreateUserName ne top3People.get(1)}">
-								<c:if test="${top5.commentCreateUserName ne top3People.get(2)}">
-									<h5>${top5.commentCreateUserName }님 ${status.index + 1 } 등 축하드립니다.</h5>
-									
+			<div class="d-flex justify-content-center align-items-center">
+				<div class="w-75 my-2 text-center">
+					<h2 class="pt-5">TOP 3</h2>
+					<img class="pb-3" src="/static/images/product_image.jpg" width="150" height="150">
+					
+					<c:forEach var="top3" items="${top3People }" varStatus="status">
+						<h2>${top3 }님 ${status.index + 1 } 등 축하드립니다.</h2>
+						<br>		
+					</c:forEach>
+					
+					<c:forEach var="top5" items="${top5People }" varStatus="status">
+					
+							<c:if test="${top5.commentCreateUserName ne top3People.get(0)}">
+								<c:if test="${top5.commentCreateUserName ne top3People.get(1)}">
+									<c:if test="${top5.commentCreateUserName ne top3People.get(2)}">
+										<h5>${top5.commentCreateUserName }님 ${status.index + 1 } 등 축하드립니다.</h5>
+										
+									</c:if>
 								</c:if>
 							</c:if>
-						</c:if>
-						<!-- 4등 5등을 뽑아지는데 다른방법 없나? 다시시도 하자 -->
-				</c:forEach>
-				
-				
+							<!-- 4등 5등을 뽑아지는데 다른방법 없나? 다시시도 하자 -->
+					</c:forEach>
+					
+					
+				</div>
 			</div>
+				
+			</section>
+				
+			<!-- 4등 상품 정보 없으면 아래꺼 안내 문구가 뜨지 않게 -->
+			<!-- 4등의 상품 정보가 있다면 상품정보를 그냥 출력하고  추가로 원판 돌리시 경고창 뜨게 -->
+			<c:choose>
+				<c:when test="${empty dateInfo }">
+					
+					<div>
+						<!-- 뽑기 -->
+						<h2 class="title">4등은 아쉬우니까! 한 번 더 기회를!</h2>	
+					</div>
+						
+					<div class="box-roulette">
+					<div class="markers"></div>
+					<c:choose>
+						<c:when test="${top5People.get(3).commentCreateUserName eq  userName }">
+							<button type="button" id="btn-start" value="fourth">
+								뽑기 시작
+							</button>
+						</c:when>
+						<c:otherwise>
+							<button type="button" id="btn-start" value="NotFourth">
+								뽑기 시작
+							</button>
+						</c:otherwise>
+					</c:choose>
+					<div class="roulette" id="roulette"></div>
+					</div>
+					
+					<div>
+						<h2 class="text-center">4등은 보너스 게임에 참여해서 추가 상품에 도전하세요!</h2>		
+					</div>
+					
+					<!-- 여기아래에 상품 -->
+					<div id="fourthProduct" class="text-center" style="font-weight:bold; font-size:40px;">
+						
+					</div>
+						
+				</c:when>
+				<c:otherwise>
+					<div class="text-center">
+						<h2> 4등의 보너스 상품 도전 결과는?</h2>
+						<h2> 4등 상품은 ${dateInfo } 입니다.</h2>  
+					</div>
+				</c:otherwise>
+				
+			</c:choose>
+			
+			
+			<!-- 4등 상품 정보 있으면 아래꺼가 나오지 않게 -->
+			<!-- 4등의 상품정보가 없다면 아래꺼로 돌려서 나오는 결과를 삽입해주고 -->
+			<!-- 아래 스크립트에서 바로아래 div 안에  태그를 삽입하는문장이 있음. -->
+		
+			
+			<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+		
 		</div>
-			
-		</section>
-			
-		<!-- 4등 상품 정보 없으면 아래꺼 안내 문구가 뜨지 않게 -->
-		<!-- 4등의 상품 정보가 있다면 상품정보를 그냥 출력하고  추가로 원판 돌리시 경고창 뜨게 -->
-		<c:choose>
-			<c:when test="${empty dateInfo }">
-				
-				<div>
-					<!-- 뽑기 -->
-					<h2 class="title">4등은 아쉬우니까! 한 번 더 기회를!</h2>	
-				</div>
-					
-				<div class="box-roulette">
-				<div class="markers"></div>
-				<c:choose>
-					<c:when test="${top5People.get(3).commentCreateUserName eq  userName }">
-						<button type="button" id="btn-start" value="fourth">
-							뽑기 시작
-						</button>
-					</c:when>
-					<c:otherwise>
-						<button type="button" id="btn-start" value="NotFourth">
-							뽑기 시작
-						</button>
-					</c:otherwise>
-				</c:choose>
-				<div class="roulette" id="roulette"></div>
-				</div>
-				
-				<div>
-					<h2 class="text-center">4등은 보너스 게임에 참여해서 추가 상품에 도전하세요!</h2>		
-				</div>
-				
-				<!-- 여기아래에 상품 -->
-				<div id="fourthProduct" class="text-center" style="font-weight:bold; font-size:40px;">
-					
-				</div>
-					
-			</c:when>
-			<c:otherwise>
-				<div class="text-center">
-					<h2> 4등의 보너스 상품 도전 결과는?</h2>
-					<h2> 4등 상품은 ${dateInfo } 입니다.</h2>  
-				</div>
-			</c:otherwise>
-			
-		</c:choose>
-		
-		
-		<!-- 4등 상품 정보 있으면 아래꺼가 나오지 않게 -->
-		<!-- 4등의 상품정보가 없다면 아래꺼로 돌려서 나오는 결과를 삽입해주고 -->
-		<!-- 아래 스크립트에서 바로아래 div 안에  태그를 삽입하는문장이 있음. -->
-	
-		
-		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
-	
-	</div>
 	</c:when>
 	
 	<c:otherwise>
@@ -203,6 +203,7 @@
 	
 	
 	</c:choose>
+	
 	
 	
 	

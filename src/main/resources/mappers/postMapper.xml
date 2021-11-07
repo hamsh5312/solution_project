@@ -25,6 +25,7 @@
  		, #{content}
  		, #{imagePath}
  		, #{sBox}
+ 		, 0
  		, now()
  		, now()
  		)

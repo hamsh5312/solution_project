@@ -40,6 +40,7 @@
 			
 			<div class="d-flex justify-content-center">
 				<div class="list-box w-75 my-4">
+				
 					<c:choose>
 					
 					<c:when test="${not empty recommendInfoList }">
