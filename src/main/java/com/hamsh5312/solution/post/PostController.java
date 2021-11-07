@@ -141,8 +141,6 @@ public class PostController {
 	}
 	
 	
-	
-	
 	@GetMapping("/detail_view")
 	public String detailView(
 			@RequestParam("id") int id

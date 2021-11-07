@@ -198,7 +198,7 @@
 			<img src="/static/images/product_image.jpg" width="300" height="300">
 		</div>	
 			<h2 class="text-center">데이터 값이 부족합니다. 데이터를 더 입력하세요!</h2>
-		
+			<h2 class="text-center"><a href="/post/list_view">고민 리스트 홈으로 돌아가기</a></h2>
 	</c:otherwise>
 	
 	

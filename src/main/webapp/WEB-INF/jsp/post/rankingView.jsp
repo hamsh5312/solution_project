@@ -40,7 +40,10 @@
 			
 			<div class="d-flex justify-content-center">
 				<div class="list-box w-75 my-4">
-				
+					<c:choose>
+					
+					<c:when test="${not empty recommendInfoList }">
+					
 					<h1 class="text-center mt-3">고민 추천 순위</h1>
 					<div class="d-flex align-items-center">
 						<img src="/static/images/solutionPic.png" width="80px;" height="80px;">
@@ -79,9 +82,21 @@
 							
 						</tbody>
 					</table>
-					
+				</c:when>
+				
+				<c:otherwise>
+					<div class="d-flex justify-content-center">
+						<img src="/static/images/rankingPic.jpg" width="300px;" height="300px;">
+					</div>
+					<h2 class="text-center">순위를 매기기에는 데이터가 부족합니다.</h2>
+				</c:otherwise>
+				
+				</c:choose>
+				
 				</div>
+				
 			</div>
+			
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />	
