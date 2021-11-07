@@ -14,6 +14,7 @@
  			, `content`
  			, `imagePath`
  			, `sBox`
+ 			, `hit`
  			, `createdAt`
  			, `updatedAt`
  		) VALUES(
@@ -24,6 +25,7 @@
  		, #{content}
  		, #{imagePath}
  		, #{sBox}
+ 		, 0
  		, now()
  		, now()
  		)

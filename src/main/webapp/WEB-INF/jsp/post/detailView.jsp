@@ -28,8 +28,6 @@
 </head>
 <body>
 
-	
-	
 	<div id="wrap">
 	
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
@@ -59,6 +57,17 @@
 							</c:otherwise>
 						</c:choose>
 					</c:if>
+<<<<<<< HEAD
+				</div>
+				
+				<div class="d-flex justify-content-start">
+					<h5 class="pt-2"><span class="word-style">고민종류:</span>${post.sBox }</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">게시자:</span>${post.userName}</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">조회수:</span>${post.hit }</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">생성 날짜:</span><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></h5>					
+=======
+					
+>>>>>>> master
 				</div>
 				
 				<div class="d-flex justify-content-start">
@@ -67,9 +76,13 @@
 					<h5 class="pt-2 ml-5"><span class="word-style">조회수:</span>${post.hit }</h5>
 					<h5 class="pt-2 ml-5"><span class="word-style">생성 날짜:</span><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></h5>					
 				</div>
-				
+			
 				<div class="d-flex my-3">
+<<<<<<< HEAD
 					<label class="mr-3 mt-1"><h5> 제목 : </h5></label>
+=======
+					<label class="mr-3 mt-1"><h5>제목 : </h5></label>
+>>>>>>> master
 					<input type="text" class="form-control col-11" id="titleInput" value="${post.subject }">
 				</div>
 				

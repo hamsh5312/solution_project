@@ -7,6 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고민 리스트</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,19 +21,6 @@
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-<style>
-
-	.button-box{
-		background-color:#E2E2E2;
-		font-size: 12px;
-		font-weight:bold;
-		width:95px;
-		border-radius: 25px;
-		height:30px;
-		text-align:center;	
-	}
-	
-</style>
 </head>
 <body>
 
@@ -43,29 +33,42 @@
 		
 			<div>
 				<nav class="mt-1">
+				<div id="horizontal-underline"></div>
 					<ul class="nav nav-fill">
-                        <li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
+                    	<li class="nav-item"><a class="nav-link" href="/post/create_view">고민 올리기</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/list_view">고민 리스트</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/ranking_view">고민 해결 순위</a></li>
                         <li class="nav-item"><a class="nav-link" href="/post/product_view">이번달 상품 종류</a></li>
-                    </ul>
+             		</ul>
 				</nav>
 			</div>
 			
 			<div class="d-flex justify-content-center">
 				
 				<div class="list-box w-75 my-4">
-					<h1 class="text-center mt-3">고민 리스트</h1>
-					
-					<!-- url 을 가져오기 위한 변수 설정 -->
-					<c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+				
+				<!-- url 을 가져오기 위한 변수 설정 -->
+				<c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+					<c:choose>
+						<c:when test="${requestPath eq '/post/my_view' }">
+							<h1 class="text-center mt-3">내 고민 보기</h1>
+						</c:when>
+						
+						<c:when test="${requestPath eq '/post/my_like_view' }">
+							<h1 class="text-center mt-3">내 찜 목록</h1>
+						</c:when>
+						
+						<c:otherwise>
+							<h1 class="text-center mt-3">고민 리스트</h1>
+						</c:otherwise>
+					</c:choose>
 					
 					<div class="d-flex mb-1">
 						<img src="/static/images/left.jpg" width="80px;" height="80px;">
 						<c:if test="${userId ne null }">
 							<div class="d-flex align-items-end">
-								<a href="/post/my_view" class="button-box form-control">내 고민 보기</a>
-								<a href="/post/my_like_view" class="button-box form-control ml-2">내 찜 목록</a>
+								<a href="/post/my_view" class="button-myBox form-control">내 고민 보기</a>
+								<a href="/post/my_like_view" class="button-likeBox form-control ml-2">내 찜 목록</a>
 							</div>
 						</c:if>
 					</div>
@@ -278,7 +281,24 @@
 				
 			});
 		
+			
+			// 메뉴에 나타나는 효과
+			let horizontalBar = document.getElementById("horizontal-underline");
+			let horizontalMenus = document.querySelectorAll("nav:first-child a");
+			
+			function horizontalIndicator(e) {
+				  horizontalBar.style.left = e.offsetLeft + "px";
+				  horizontalBar.style.width = e.offsetWidth + "px";
+				  horizontalBar.style.top = e.offsetTop + e.offsetHeight + "px";
+			}
+			
+			horizontalMenus.forEach((menu) =>
+			  menu.addEventListener("mousemove", (e) =>
+			    horizontalIndicator(e.currentTarget)
+			  )
+			);
 
+			
 			
 			
 		});

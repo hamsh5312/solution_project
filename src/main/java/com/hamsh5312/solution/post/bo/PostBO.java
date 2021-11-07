@@ -91,6 +91,11 @@ public class PostBO {
 		return postDAO.selectPost(id);
 	}
 	
+	// 조회수
+	public void increasePostHit(int id) {
+		postDAO.increasePostHit(id);
+	}
+	
 	// 찜 한거 postId 총 몇개인 가져오자
 	public int countLikePost(int userId) {
 		return postDAO.selectLikePost(userId);

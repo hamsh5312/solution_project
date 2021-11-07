@@ -41,6 +41,7 @@
 			<div class="d-flex justify-content-center">
 				<div class="list-box w-75 my-4">
 				
+<<<<<<< HEAD
 				
 					<c:choose>
 					
@@ -90,8 +91,65 @@
 					</c:choose>
 					
 					
+=======
+					<c:choose>
+					
+					<c:when test="${not empty recommendInfoList }">
+					
+					<h1 class="text-center mt-3">고민 추천 순위</h1>
+					<div class="d-flex align-items-center">
+						<img src="/static/images/solutionPic.png" width="80px;" height="80px;">
+						<h1 class="pl-4">TOP 5</h1>
+					</div>
+					<table class="table text-center">
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>고민해결을 위한 한마디!</th>
+								<th>작성자</th>
+								<th>추천 개수</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<c:forEach var="recommendInfo" items="${recommendInfoList }" varStatus="status">
+							
+							<tr>
+								<td>${status.index + 1}</td>
+								<td>
+									<c:forEach var="user" items="${userList }">
+										<c:if test="${recommendInfo.recommend.commentCreateUserName eq user.name}">
+											${user.introduce }
+										</c:if>
+									</c:forEach>
+								</td>
+								<td>${recommendInfo.recommend.commentCreateUserName }</td>
+								<td>
+									${recommendInfo.personTotalRecommend }
+								</td>
+							</tr>
+							
+							</c:forEach>
+							
+							
+						</tbody>
+					</table>
+				</c:when>
+				
+				<c:otherwise>
+					<div class="d-flex justify-content-center">
+						<img src="/static/images/rankingPic.jpg" width="300px;" height="300px;">
+					</div>
+					<h2 class="text-center">순위를 매기기에는 데이터가 부족합니다.</h2>
+				</c:otherwise>
+				
+				</c:choose>
+				
+>>>>>>> master
 				</div>
+				
 			</div>
+			
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />	
