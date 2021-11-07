@@ -23,6 +23,29 @@ header{
     background-color:rgb(238, 156, 75);
 }
 
+
+.button-myBox{
+	background-color:#A0C6E3;
+	font-size: 12px;
+	font-weight:bold;
+	width:95px;
+	border-radius: 25px;
+	height:30px;
+	text-align:center;	
+}
+
+
+.button-likeBox{
+	background-color:#FFC0CB;
+	font-size: 12px;
+	font-weight:bold;
+	width:95px;
+	border-radius: 25px;
+	height:30px;
+	text-align:center;	
+}
+
+
 .header-left{
 	width:300px;
 	height:80px;

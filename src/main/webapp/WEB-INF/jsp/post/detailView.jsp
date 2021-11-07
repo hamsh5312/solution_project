@@ -55,6 +55,8 @@
 					
 					<h5 class="pt-3 ml-5">고민종류 : ${post.sBox }</h5>
 					<h5 class="pt-3 ml-5">게시자 : ${post.userName}</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">조회수:</span>${post.hit }</h5>
+					<h5 class="pt-2 ml-5"><span class="word-style">생성 날짜:</span><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></h5>	
 					
 				</div>
 				
