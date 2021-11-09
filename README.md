@@ -39,3 +39,6 @@ https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
 
+### :tv: 고해 유트브 링크
+[고해](https://www.youtube.com/watch?v=2jr0PDEvJgY)
+
