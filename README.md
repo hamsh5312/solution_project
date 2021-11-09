@@ -25,4 +25,4 @@
 
 ### <b>🛠 설계 🛠</b>
 * UI 기획
-https://ovenapp.io/
+https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
