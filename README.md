@@ -28,4 +28,14 @@
 https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
 * 데이터 베이스, URL 설계<br>
 https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
+### :hammer_and_pick: 주요기능 :hammer_and_pick:
+* 회원가입
+  * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
+  * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
+* 로그인
+  * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
+  * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
+* 이미지 첨부 글쓰기
+  * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
+  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
 
