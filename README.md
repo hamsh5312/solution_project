@@ -45,7 +45,7 @@ https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
 * Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Mysql [GPLv2 or proprietary](https://www.gnu.org/licenses/gpl-3.0.html)
-* Spring [framework Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* Spring framework [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Mybatis [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Bootstrap [MIT License](https://opensource.org/licenses/MIT)
 * jQuery [MIT License](https://opensource.org/licenses/MIT)
