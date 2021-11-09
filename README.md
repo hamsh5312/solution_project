@@ -12,7 +12,14 @@
 <img src="https://img.shields.io/badge/ECLIPSE-3766AB?style=flat-square&logo=ECLIPSE&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/-Github-000000?style=flat&logo=Github"/>
 
-# 고해 프로젝트
+# :sunny: 고해 프로젝트
+:cat: 프로젝트 설명
 
+* 고민을 올리고 그에 대한 의견을 나누고 추천순위를 통해 상품을 받을 수 있는 웹사이트
+* 기본적으로 로그인 기반의 게시판 기능
 
+:truck: 포트폴리오
+[포트폴리오]()
+
+<b>🛠 설계 🛠</b>
 
