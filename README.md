@@ -43,13 +43,13 @@ https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
 [고해](https://www.youtube.com/watch?v=2jr0PDEvJgY)
 
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
-* Tomcat Apache License 2.0
-* Mysql GPLv2 or proprietary
-* Spring framework Apache License 2.0
-* Mybatis Apache License 2.0
-* Bootstrap MIT License
-* jQuery MIT License
-* 이미지 출처 : pixabay
+* Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* Mysql [GPLv2 or proprietary](https://www.gnu.org/licenses/gpl-3.0.html)
+* Spring [framework Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* Mybatis [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* Bootstrap [MIT License](https://opensource.org/licenses/MIT)
+* jQuery [MIT License](https://opensource.org/licenses/MIT)
+* 이미지 출처 : [pixabay](https://pixabay.com/ko/)
 ### 🎁 향후 계획
 * 개인 프로필 기능 추가
 * 팔로우, 팔로워 기능 추가
