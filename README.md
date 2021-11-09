@@ -24,8 +24,8 @@
 [고해](http://13.125.235.35:8080/user/signin_view)
 
 ### <b>🛠 설계 🛠</b>
-* UI 기획
+* UI 기획<br>
 https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
-* 데이터 베이스, URL 설계
+* 데이터 베이스, URL 설계<br>
 https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
 
