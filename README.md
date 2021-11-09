@@ -17,6 +17,9 @@
 * 고민을 올리고 그에 대한 의견을 나누고 추천순위를 통해 상품을 받을 수 있는 웹사이트
 * 기본적으로 로그인 기반의 게시판 기능
 
+### :tv: 고해 유트브 링크
+[고해](https://www.youtube.com/watch?v=2jr0PDEvJgY)
+
 ### :truck:  포트폴리오 <br>
 [포트폴리오](https://github.com/hamsh5312/solution_project/blob/developer/portfolio%20.pdf)
 
@@ -39,9 +42,6 @@ https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
 
-### :tv: 고해 유트브 링크
-[고해](https://www.youtube.com/watch?v=2jr0PDEvJgY)
-
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
 * Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Mysql [GPLv2 or proprietary](https://www.gnu.org/licenses/gpl-3.0.html)
@@ -50,7 +50,9 @@ https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
 * Bootstrap [MIT License](https://opensource.org/licenses/MIT)
 * jQuery [MIT License](https://opensource.org/licenses/MIT)
 * 이미지 출처 : [pixabay](https://pixabay.com/ko/)
+* 
 ### 🎁 향후 계획
-* 개인 프로필 기능 추가
-* 팔로우, 팔로워 기능 추가
+* 고민 종류 옵션을 추가한 검색기능
+* 댓글의 댓글 기능
+* 댓글 여러개 축소하여 
 * 사진 여러개 추가 기능
