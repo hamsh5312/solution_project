@@ -26,3 +26,6 @@
 ### <b>🛠 설계 🛠</b>
 * UI 기획
 https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
+* 데이터 베이스, URL 설계
+https://1drv.ms/x/s!Amrf518RmUGu3HzGeJOUo3285TDg
+
