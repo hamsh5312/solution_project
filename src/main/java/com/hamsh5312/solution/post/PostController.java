@@ -144,12 +144,16 @@ public class PostController {
 	@GetMapping("/detail_view")
 	public String detailView(
 			@RequestParam("id") int id
+			, @RequestParam(value = "NotCount", required =false) Integer NotCount
 			, Model model
 			, HttpServletRequest request) {
 		
-		// 조회수 증가
-		postBO.increasePostHit(id);
 		
+		if(NotCount == null) {
+			postBO.increasePostHit(id);
+		}
+		
+				
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
 		

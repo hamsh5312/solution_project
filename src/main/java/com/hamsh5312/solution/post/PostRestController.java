@@ -24,7 +24,7 @@ import com.hamsh5312.solution.post.recommend.model.Recommend;
 @RestController
 @RequestMapping("/post")
 public class PostRestController {
-
+	
 	
 	@Autowired
 	private PostBO postBO;

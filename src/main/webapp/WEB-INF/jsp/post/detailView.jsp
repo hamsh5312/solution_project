@@ -31,7 +31,7 @@
 			
 				<div class="d-flex">
 					
-					<h1 class="text-center">고민</h1>
+					<h1 class="text-center" id="postInfo" data-postid-id="${postDetail.post.id }">고민</h1>
 					<c:if test="${post.userName ne userName }">
 						<c:choose>
 							<c:when test="${postDetail.like }">
@@ -133,6 +133,9 @@
 	<script>
 		$(document).ready(function(){
 			
+			var postInfoId = $("#postInfo").data("postid-id");
+			//alert(postInfoId);
+			
 			$("#deleteBtn").on("click", function() {
 				var postId = $(this).data("post-id");
 				
@@ -197,7 +200,8 @@
 					success:function(data){
 						if(data.result == "success"){
 							//alert("댓글 작성 성공");
-							location.reload();
+							//location.reload();
+							location.href="/post/detail_view?id=" + postInfoId + "&NotCount=1";
 						}else{
 							alert("댓글 작성 실패");
 						}
@@ -222,7 +226,9 @@
 					data:{"commentId":commentId},
 					success:function(data){
 						if(data.result == "success"){
-							location.reload();
+							location.href="/post/detail_view?id=" + postInfoId + "&NotCount=1";
+							//location.href="/post/detail_view?id=postInfoId";
+							//location.reload();
 						}else if(data.result == "fail"){
 							alert("추천 실패");
 						}else{  // data.result == "noLogin"
@@ -249,7 +255,9 @@
 					data:{"postId":postId},
 					success:function(data){
 						if(data.result == "success"){
-							location.reload();
+							// /post/detail_view?id=4&NotCount=1
+							location.href="/post/detail_view?id=" + postInfoId + "&NotCount=1";
+							//location.reload();
 						}else if(data.result == "fail"){
 							alert("좋아요 실패");
 						}else{  // data.result == "noLogin"
