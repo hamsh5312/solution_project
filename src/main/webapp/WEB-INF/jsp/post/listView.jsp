@@ -83,55 +83,83 @@
 								</div>
 							</form>
 							
+							
 							<select id="categoryBox" name="worry" style="width:100px; height:37.68px;">
-								
-								<option>고민 종류</option>
-								<option value="all"  id="allId">전체선택</option>
-								<option value="study" id="studyId">공부</option>
-								<option value="exercise" id="exerciseId">운동</option>
-								<option value="food" id="foodId">음식</option>
-								<option value="hobby" id="hobbyId">취미</option>
-								<option value="game" id="gameId">놀이</option>
-								<option value="startUp" id="startUpId">창업</option>
-								<option value="other" id="otherId">기타</option>
-								
-								
+							
 								<c:choose>
 									<c:when test="${param.category eq 'all'}">
 										<option value="all"  id="allId" selected>전체선택</option>
 									</c:when>
-										
+									<c:otherwise>
+										<option value="all"  id="allId">전체선택</option>
+									</c:otherwise>
+								</c:choose>
+								
+								<c:choose>
 									<c:when test="${param.category eq 'study'}">
 										<option value="study" id="studyId" selected>공부</option>
 									</c:when>
-										
+									<c:otherwise>
+										<option value="study" id="studyId" >공부</option>
+									</c:otherwise>
+								</c:choose>
+								
+								<c:choose>
 									<c:when test="${param.category eq 'exercise'}">
 										<option value="exercise" id="exerciseId" selected>운동</option>
 									</c:when>	
-										
+									<c:otherwise>
+										<option value="exercise" id="exerciseId">운동</option>
+									</c:otherwise>
+								</c:choose>	
+									
+								<c:choose>
 									<c:when test="${param.category eq 'food'}">
 										<option value="food" id="foodId" selected>음식</option>
 									</c:when>	
-										
+									<c:otherwise>
+										<option value="food" id="foodId">음식</option>
+									</c:otherwise>
+								</c:choose>	
+									
+								<c:choose>
 									<c:when test="${param.category eq 'hobby'}">
 										<option value="hobby" id="hobbyId" selected>취미</option>
-									</c:when>
+									</c:when>	
+									<c:otherwise>
+										<option value="hobby" id="hobbyId">취미</option>
+									</c:otherwise>
+								</c:choose>	
 										
+								<c:choose>
 									<c:when test="${param.category eq 'game'}">
 										<option value="game" id="gameId" selected>놀이</option>
-									</c:when>	
-									
+									</c:when>		
+									<c:otherwise>
+										<option value="game" id="gameId">놀이</option>
+									</c:otherwise>
+								</c:choose>	
+								
+								<c:choose>
 									<c:when test="${param.category eq 'startUp'}">
 										<option value="startUp" id="startUpId" selected>창업</option>
-									</c:when>	
+									</c:when>		
+									<c:otherwise>
+										<option value="startUp" id="startUpId">창업</option>
+									</c:otherwise>
+								</c:choose>	
 										
+								<c:choose>
 									<c:when test="${param.category eq 'other'}">
 										<option value="other" id="otherId" selected>기타</option>
-									</c:when>
-									
-								</c:choose>
-									
+									</c:when>		
+									<c:otherwise>
+										<option value="other" id="otherId">기타</option>
+									</c:otherwise>
+								</c:choose>		
+											
 							</select>
+							
 							
 						</div>	
 					</c:if>
