@@ -29,7 +29,6 @@
 </head>
 <body>
 
-
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<hr>
