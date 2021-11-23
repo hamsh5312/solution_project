@@ -10,9 +10,9 @@
     	</div>
 		    	
 		<div class="header-center d-flex justify-content-center align-items-center">
-			<img src="/static/images/headerPic.jpg" width="70px;" height="70px;">
-			<div class="display-4 pl-3" style="font-weight:bolder; font-family:cursive;">
-				고 해
+			<a href="/post/list_view"><img src="/static/images/headerPic.jpg" width="70px;" height="70px;"></a>
+			<div class="display-4 pl-3" style="font-weight:bolder; font-family:Monospace;">
+				고해
 			</div>
 		</div>
 		

@@ -54,7 +54,7 @@ public class FileManagerService {
 		}
 		
 		
-		// 파일을 접근할수 있는 경로
+		// 파일을 접근할 수 있는 경로
 		// <img src="/images/43_281281298129/test.png">
 		
 		return "/images/" + directoryName + file.getOriginalFilename();

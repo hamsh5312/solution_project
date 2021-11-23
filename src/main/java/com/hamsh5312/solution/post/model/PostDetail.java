@@ -8,12 +8,7 @@ public class PostDetail {
 
 	private Post post;
 	private boolean isLike;
-	// 아래 이전 변수명 commentList 를 commentDetailList 로 변경함
 	private List<CommentDetail> commentDetailList;
-	
-//	private boolean isRecommend;
-//	private int recommendCount;
-	
 	
 	public Post getPost() {
 		return post;
@@ -33,9 +28,6 @@ public class PostDetail {
 	public void setCommentDetailList(List<CommentDetail> commentDetailList) {
 		this.commentDetailList = commentDetailList;
 	}
-	
-	
-	
 	
 	
 }

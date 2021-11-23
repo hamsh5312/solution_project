@@ -66,7 +66,6 @@ public class PostRestController {
 	}
 	
 	
-	
 	@GetMapping("/delete")
 	public Map<String ,String> delete(@RequestParam("postId") int postId
 			, HttpServletRequest request){
@@ -118,7 +117,7 @@ public class PostRestController {
 		
 	}
 	
-	//
+	
 	@GetMapping("/bonusGame")
 	public Map<String, String> bonusGameFunction(
 			@RequestParam("product") String product){

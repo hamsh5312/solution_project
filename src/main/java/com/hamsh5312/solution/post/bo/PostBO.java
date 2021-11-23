@@ -110,17 +110,14 @@ public class PostBO {
 	public List<Post> getLikePostList(PageMaker myPageMaker, Integer userId){
 		
 		List<Integer> likePostIdList = likePostIdByUserId(userId);
-		
 		int pageStart = myPageMaker.getCri().getPageStart();
 		int perPageNum = myPageMaker.getCri().getPerPageNum();
 		
 		return postDAO.selectLikeWorryList(pageStart, perPageNum, likePostIdList);
-	
-		
 	}
 	
 	
-	// 고민내용 삭제하기전 해당 포스트를 쓴 사람만 삭제하도록하기위해서 게시물 체크
+	// 고민내용 삭제하기 전 해당 포스트를 쓴 사람만 삭제하도록 하기 위해서 게시물 체크
 	public Post postDeleteCheck(int id, int userId) {
 		return postDAO.selectDeletePost(id, userId);
 	}
@@ -143,38 +140,31 @@ public class PostBO {
 		// 댓글, 추천, 찜 삭제 
 		// 우선 postId 를 넣어주었을때 그에 맞는 댓글 리스트를 뽑아오자
 		List<Comment> commentList = commentBO.getCommentListByPostId(postId);
-		// recommend 전체 반복을 돌리다가 하나하나씩 비교해봐 또하나의 commentList 반복문으로
+		// recommend 전체 반복을 돌리다가 하나하나씩 비교해봐 또 하나의 commentList 반복문으로
 		// 추천리스트 뽑아 오자
 		List<Recommend> recommendList = recommendBO.getRecommendList();
 		
 		for(Recommend recommend : recommendList) {
-			
 			for(Comment comment : commentList) {
-				
 				if(recommend.getCommentId() == comment.getId()) {
 					int commentId = comment.getId();
+					// 추천 삭제
 					recommendBO.deleteRecommendByCommentId(commentId);
-				}
-				
+				}	
 			}
-			
 		}
 		
 		// 댓글 삭제  찜 삭제
 		commentBO.deleteCommentByPostId(postId);
 		deleteLikeByPostId(postId);
 		
-		
 		return postDAO.deletePost(postId, userId);
 	}
-	
-	
 	
 	
 	public int updatePost(int id, int userId, String subject, String content) {
 		return postDAO.updatePost(id, userId, subject, content);
 	}
-	
 	
 	
 	public PostDetail getPostList(Integer userId, int postId){
@@ -189,11 +179,9 @@ public class PostBO {
 		
 		for(Comment comment : commentList) {
 			CommentDetail commentDetail = new CommentDetail();
-			// 해당 포스트에 추천 개수
+			// 해당 포스트의 특정 댓글의 추천 개수
 			int recommendCount = recommendBO.recommendCount(comment.getId());
 			
-			// 추가로 비오에서 해당댓글에 추천한기록있는지 가져오기 그담에 넣기
-			// 아래 userId 로 되어있는거 변수명도 commentId 로 바꾸고 파라미터값도 조정바람
 			boolean isRecommend = recommendBO.recommendByCommentIdUserId(comment.getId(), userId);
 			commentDetail.setComment(comment);
 			commentDetail.setRecommendCount(recommendCount);
@@ -204,7 +192,6 @@ public class PostBO {
 		
 		boolean isLike = likeByUserIdPostId(post.getId(), userId);
 		postDetail.setLike(isLike);
-		
 		postDetail.setPost(post);
 		postDetail.setCommentDetailList(commentDetailList);
 			
@@ -222,29 +209,28 @@ public class PostBO {
 		}	
 	}
 	
+	
 	public boolean like(int userId, int postId) {
 			
-			// 찜 상태면 찜 취소
-			if(this.likeByUserIdPostId(postId, userId)) {
-				int count = postDAO.deleteLike(userId, postId);
-				if(count == 0) {
-					return false;
-				}else {
-					return true;
-				}
-			}else {  // 찜 취소 상태면 찜
-				int count = postDAO.insertLike(userId, postId);
-				if(count == 1) {
-					return true;
-				}else {
-					return false;
-				}
+		// 찜 상태면 찜 취소
+		if(this.likeByUserIdPostId(postId, userId)) {
+			int count = postDAO.deleteLike(userId, postId);
+			if(count == 0) {
+				return false;
+			}else {
+				return true;
 			}
-			
+		}else {  // 찜 취소 상태면 찜
+			int count = postDAO.insertLike(userId, postId);
+			if(count == 1) {
+				return true;
+			}else {
+				return false;
+			}
 		}
+		
+	}
 	
-	
-	//
 	
 	public List<User> getUserList(){ 
 		return userDAO.selectUser();
@@ -252,7 +238,6 @@ public class PostBO {
 	
 	public List<CommentDetail> getCommentDetailList(){
 		
-		// 바로 아래식은 굳이 필요없을거같은데... 내가 필요한건 추천개수뿐임.
 		List<Comment> commentList = commentBO.getCommentList();
 		List<CommentDetail> commentDetailList = new ArrayList<>();
 		
@@ -267,7 +252,7 @@ public class PostBO {
 			
 			// 해당하는 comment를 현재 로그인한 사용자가 추천했는지 확인
 			
-			// 어차피 아래 상태는 필요없으니까 (고민 해결 순위에 아이디별 추천상태는 필요없음, 화면에 안타나남)
+			// 어차피 아래 상태는 필요없으니까 (고민 해결 순위에 아이디별 추천상태는 필요없음)
 			boolean isRecommend = false;
 			commentDetail.setRecommend(isRecommend);		
 			commentDetail.setRecommendCount(recommendCount);
@@ -283,23 +268,18 @@ public class PostBO {
 	
 	public List<RecommendInfo> getRecommendInfoList(){
 		
-		// 포스트 컨트롤러에서 아래 식이 있었음.. 활용하기
-//		List<Recommend> recommendList = recommendBO.getRecommendRankingList();
-		
 		List<Recommend> recommendList = recommendBO.getRecommendRankingList();
 		List<RecommendInfo> recommendInfoList = new ArrayList<>();
 		List<Integer> personTotalRecommendList = recommendBO.getRecommendTotalCount();
 		
 		int i = 0;
 		for(Recommend recommend : recommendList) {
-			// Recommend 리스트들을 하나씩 set 하자
+
 			RecommendInfo recommendInfo = new RecommendInfo();
 			recommendInfo.setRecommend(recommend);
 			
-			// 전체 추천수를  set 하자
-			
 			for( ; i < personTotalRecommendList.size(); ) {
-				// 여기에 어떤 조건을 주어서 하나씩만 set 하고싶은데... 아래방법이 맞는건가 ... 음
+		
 				recommendInfo.setPersonTotalRecommend(personTotalRecommendList.get(i));
 				i++;
 				break;	
@@ -311,7 +291,6 @@ public class PostBO {
 		return recommendInfoList;
 			
 	}
-	
 	
 	
 	

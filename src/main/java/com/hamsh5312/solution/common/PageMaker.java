@@ -3,6 +3,7 @@ package com.hamsh5312.solution.common;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+// 페이지에 페이징 버튼들을 만들기 위한 계산 클래스
 public class PageMaker {
 	
 	private Criteria cri;
@@ -27,6 +28,7 @@ public class PageMaker {
         calcData();
     }
     
+    
     private void calcData() {
         
         endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
@@ -43,6 +45,7 @@ public class PageMaker {
         next = endPage * cri.getPerPageNum() < totalCount ? true : false;
         
     }
+    
     
     public String makeQueryPage(int page) {
         UriComponents uri = UriComponentsBuilder.newInstance()

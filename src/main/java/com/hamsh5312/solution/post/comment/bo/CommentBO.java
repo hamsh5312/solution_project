@@ -28,7 +28,6 @@ public class CommentBO {
 		return commentDAO.deleteCommentByPostId(postId);
 	}	
 	
-	
 	// 모든 댓글리스트
 	public List<Comment> getCommentList(){
 		return commentDAO.selectCommentList();
@@ -38,5 +37,6 @@ public class CommentBO {
 	public Comment getComment(int id) {
 		return commentDAO.selectComment(id);
 	}
-		
+	
+	
 }

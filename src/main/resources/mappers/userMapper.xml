@@ -89,7 +89,8 @@
  			, `updatedAt`
 		FROM
 			`user`
- 	
+ 		
+ 		
  	</select>
 	
 	

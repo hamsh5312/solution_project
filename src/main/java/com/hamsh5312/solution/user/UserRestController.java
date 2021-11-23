@@ -50,13 +50,17 @@ public class UserRestController {
 	@GetMapping("/is_duplicate_id")
 	public Map<String, Boolean> isDuplicateId(@RequestParam("loginId") String loginId){
 			
-		Map<String, Boolean> result = new HashMap<>(); 	
+		Map<String, Boolean> result = new HashMap<>();
+		
 		if(userBO.isDuplicateId(loginId)) {
 			result.put("is_duplicate", true);
 		}else {
 			result.put("is_duplicate", false);
 		}
-//		 result.put("is_duplicate", userBO.isDuplicateId(loginId));
+		
+// 		위의 if ~ else 문을 아래와 같이 한 문장으로 표현 가능 		
+//		result.put("is_duplicate", userBO.isDuplicateId(loginId));
+		
 		return result;	
 	}
 	

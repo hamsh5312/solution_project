@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
      
 <!DOCTYPE html>
 <html>
@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
+  
 </head>
 <body>
 
@@ -49,20 +54,23 @@
 				
 				<!-- url 을 가져오기 위한 변수 설정 -->
 				<c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
+				
 					<c:choose>
 						<c:when test="${requestPath eq '/post/my_view' }">
-							<h1 class="text-center mt-3">내 고민 보기</h1>
+							<h1 class="text-center mt-3 now-title">내 고민 보기</h1>
 						</c:when>
 						
 						<c:when test="${requestPath eq '/post/my_like_view' }">
-							<h1 class="text-center mt-3">내 찜 목록</h1>
+							<h1 class="text-center mt-3 now-title">내 찜 목록</h1>
 						</c:when>
 						
 						<c:otherwise>
-							<h1 class="text-center mt-3">고민 리스트</h1>
+							<h1 class="text-center mt-3 now-title">고민 리스트</h1>
 						</c:otherwise>
 					</c:choose>
-					
+					<div class="text-center">
+						<img src="/static/images/worryHand.png" width="200px;" height="60px;">
+					</div>
 					<div class="d-flex mb-1">
 						<img src="/static/images/left.jpg" width="80px;" height="80px;">
 						<c:if test="${userId ne null }">
@@ -177,9 +185,6 @@
 								
 								<tbody>
 								
-									<!-- 아래에 forEach 문을 2개 만들고   만약에 어떤 해당 id 가 클릭한다면 그 id에 해당하는 반복문 실행하고 
-										 그 id 가 클릭안되면 그냥 다른 반복문 실행  -->
-								
 									<c:forEach var="worry" items="${worryList }">
 									<tr>
 										<td>${worry.id }</td>
@@ -210,23 +215,23 @@
 								    <li>
 								   		<c:choose>
 								        	<c:when test="${param.category ne null }">
-								        		<a href='<c:url value="${requestPath }?page=${pageMaker.startPage-1 }&category=${param.category }"/>'><i class=" bi bi-arrow-left-circle" style="font-size:25px;"></i></a>
+								        		<a href='<c:url value="${requestPath }?page=${pageMaker.startPage-1 }&category=${param.category }"/>'><i class="ml-4 fa-2x bi bi-arrow-left-square" style="color:#5F5F5F;"></i></a>
 								        	</c:when>
 								        	<c:otherwise>
-								        		<a href='<c:url value="${requestPath }?page=${pageMaker.startPage-1 }"/>'><i class=" bi bi-arrow-left-circle" style="font-size:25px;"></i></a>
+								        		<a href='<c:url value="${requestPath }?page=${pageMaker.startPage-1 }"/>'><i class="ml-4 fa-2x bi bi-arrow-left-square" style="color:#5F5F5F;"></i></a>
 								        	</c:otherwise>
 							        	</c:choose> 
 								    </li>
 							    </c:if>
 							    
 							    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-								    <li>
+								    <li class="number-position">
 								    	<c:choose>
 									    	<c:when test="${param.category ne null }">
-									    		<a href='<c:url value="${requestPath }?page=${pageNum }&category=${param.category }"/>'><i class="fa ml-3" style="font-size:25px;" >${pageNum }</i></a>
+									    		<a href='<c:url value="${requestPath }?page=${pageNum }&category=${param.category }"/>'><i class="ml-4 fa-2x fa"  style="color:#5F5F5F;">${pageNum }</i></a>
 									    	</c:when>
 									    	<c:otherwise>
-									    		<a href='<c:url value="${requestPath }?page=${pageNum }"/>'><i class="fa ml-3" style="font-size:25px;" >${pageNum }</i></a>
+									    		<a href='<c:url value="${requestPath }?page=${pageNum }"/>'><i class="ml-4 fa-2x fa" style="color:#5F5F5F;" >${pageNum }</i></a>
 									    	</c:otherwise>
 								    	</c:choose>
 								    </li>
@@ -236,10 +241,10 @@
 								    <li>
 							        	 <c:choose>
 								        	 <c:when test="${param.category ne null }">
-								        	 	<a href='<c:url value="${requestPath }?page=${pageMaker.endPage+1 }&category=${param.category }"/>'><i class="ml-3 bi bi-arrow-right-circle" style="font-size:25px;"></i></a>
+								        	 	<a href='<c:url value="${requestPath }?page=${pageMaker.endPage+1 }&category=${param.category }"/>'><i class="ml-4 fa-2x bi bi-arrow-right-square " style="color:#5F5F5F;"></i></a>
 								        	 </c:when>
 								        	 <c:otherwise>
-								        	 	<a href='<c:url value="${requestPath }?page=${pageMaker.endPage+1 }"/>'><i class="ml-3 bi bi-arrow-right-circle" style="font-size:25px;"></i></a>
+								        	 	<a href='<c:url value="${requestPath }?page=${pageMaker.endPage+1 }"/>'><i class="ml-4 fa-2x bi bi-arrow-right-square" style="color:#5F5F5F;"></i></a>
 								        	 </c:otherwise>
 							        	 </c:choose>
 								    </li>
@@ -247,21 +252,22 @@
 						    	
 						    </c:if>
 						    
+						    
 						    <c:if test="${param.searchInput ne null }">
 						    	
 						    	<c:if test="${pageMaker.prev }">
 							    	<li>
-					        			<a href='<c:url value="${requestPath }?page=${pageMaker.startPage-1 }&searchInput=${param.searchInput }"/>'><i class=" bi bi-arrow-left-circle" style="font-size:25px;"></i></a>	        
+					        			<a href='<c:url value="${requestPath }?page=${pageMaker.startPage-1 }&searchInput=${param.searchInput }"/>'><i class="ml-4 fa-2x bi bi-arrow-left-circle" style="color:#5F5F5F;"></i></a>	        
 								    </li>
 							    </c:if>
 							    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 								    <li>
-							    		<a href='<c:url value="${requestPath }?page=${pageNum }&searchInput=${param.searchInput }"/>'><i class="fa ml-3" style="font-size:25px;" >${pageNum }</i></a>
+							    		<a href='<c:url value="${requestPath }?page=${pageNum }&searchInput=${param.searchInput }"/>'><i class="ml-4 fa-2x fa" style="color:#5F5F5F;">${pageNum }</i></a>
 								    </li>
 							    </c:forEach>
 							    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 								    <li>
-						        	 	<a href='<c:url value="${requestPath }?page=${pageMaker.endPage+1 }&searchInput=${param.searchInput }"/>'><i class="ml-3 bi bi-arrow-right-circle" style="font-size:25px;"></i></a>						        	 
+						        	 	<a href='<c:url value="${requestPath }?page=${pageMaker.endPage+1 }&searchInput=${param.searchInput }"/>'><i class="ml-4 fa-2x bi bi-arrow-right-circle" style="color:#5F5F5F;"></i></a>						        	 
 								    </li>
 							    </c:if>   
 						    
@@ -274,21 +280,10 @@
 					
 					
 					
-					<!-- 이전 이후 버튼 -->
-				 
-					 <!--  
-						<div class="pt-3 d-flex justify-content-center">
-						
-						<i class="mr-5 bi bi-arrow-left-circle" style="font-size:25px;"></i>
-						
-						<i class="bi bi-arrow-right-circle" style="font-size:25px;"></i>
-						
-					</div>
-					 -->
 				</div>
-				
-				
+		
 			</div>
+			
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />	
@@ -298,8 +293,7 @@
 	
 	<script>
 	
-	// 페이지를 이동  주소를 바꿔주는거 location.herf  하나 파라미터를 추가해서 새로요청해서...
-	// 페이징 
+	
 		$(document).ready(function(){
 			
 			$("#categoryBox").change(function(){

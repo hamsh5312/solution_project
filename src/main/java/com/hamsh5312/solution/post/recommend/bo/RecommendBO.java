@@ -72,11 +72,11 @@ public class RecommendBO {
 		return recommendDAO.selectBonusPeople(startDate, endDate);
 	}
 	
+	
 	public int deleteRecommendByPostId(int postId) {
 		return recommendDAO.deleteRecommendByPostId(postId);
 	}
 	
-	//
 	
 	// 추천리스트 다 가져오기
 	public List<Recommend> getRecommendList() {
@@ -99,5 +99,6 @@ public class RecommendBO {
 	public List<Integer> getRecommendTotalCount(){
 		return recommendDAO.selectRecommendCount();
 	}
+	
 	
 }

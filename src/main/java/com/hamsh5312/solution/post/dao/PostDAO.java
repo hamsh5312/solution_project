@@ -38,7 +38,6 @@ public interface PostDAO {
 	public void increasePostHit(@Param("id") int id);
 	
 	// 찜 관련 
-	
 	public List<Post> selectLikeWorryList(
 			@Param("pageStart") int pageStart
 			, @Param("perPageNum") int perPageNum
@@ -78,8 +77,7 @@ public interface PostDAO {
 	
 	public int deletePost(
 			@Param("id") int id
-			, @Param("userId") int userId
-			);
+			, @Param("userId") int userId);
 	
 	public int selectLikePost(@Param("userId") int userId);
 	
@@ -88,6 +86,7 @@ public interface PostDAO {
 			, @Param("userId") int userId
 			, @Param("subject") String subject
 			, @Param("content") String content);
+	
 	
 	// 찜삭제
 	public int deleteLikeByPostId(@Param("postId") int postId);

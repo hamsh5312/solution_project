@@ -1,6 +1,5 @@
 package com.hamsh5312.solution.post;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -56,6 +55,7 @@ public class PostController {
 			cri.setPage(page);
 		}
 		pageMaker.setCri(cri);
+		
 		
 		if(searchInput != null) {
 			// 검색어가 뭔가 들어오면
@@ -174,23 +174,10 @@ public class PostController {
 	public String rankingView(
 			Model model
 			) {
-		// 일단 user 테이블을 전체 다 선택하는 메소드가 필요
-		// 
+		
 		List<User> userList = postBO.getUserList();
-		
-//		List<CommentDetail> commentDetailList = postBO.getCommentDetailList();
-		
 		model.addAttribute("userList", userList);
-		// 그냥, 추천 테이블을 샐랙트하고,  JSP 로 넘어간 그 쪽에서는 
-		// 그쪽에서는... recommend 테이블에서는 
-		// commentCreateUserName  별 SELECT count(commentId) 하고  뒤이어 끝에
-		// ORDER BY `count(commentId)` DESC
-		// 위와같이 정렬을 하고 화면에 보이는거는
-		// userList에서 반복문으로 user의 name 이 commentCreateUserName 하고 같을때 
-		// user.introduce (해결사의 한마디 !) 출력
-		// recommend 테이블의 commentCreateUserName(작성자) 출력하고 commendId 개수(추천 개수) 출력하고
 		
-//		List<Recommend> recommendList = recommendBO.getRecommendRankingList();
 		List<RecommendInfo> recommendInfoList = postBO.getRecommendInfoList();
 		model.addAttribute("recommendInfoList", recommendInfoList);
 				
@@ -198,10 +185,8 @@ public class PostController {
 	}
 	
 	
-	
 	@GetMapping("/product_view")
-	public String productView(
-			Model model) {
+	public String productView(Model model) {
 		
 		List<String> top3People = recommendBO.getTop3People();
 		model.addAttribute("top3People",top3People);
@@ -217,24 +202,14 @@ public class PostController {
         String formattedDate = dtf.format(dateObj);
         String startDate = formattedDate + "-01 00:00:00";
         String endDate = formattedDate + "-" + calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + " 23:59:59";		
-        //System.out.println(formattedDate);
-		// formattedDate 에는 2021-11 이 저장 되어있다고 판단함.. 확인은?
-		
+        
 		// 날짜 정보를 출력해보자
         String dateInfo = recommendBO.chooseBonusPeople(startDate, endDate);
 		model.addAttribute("dateInfo",dateInfo);
 		
-		// 상품 수령할 수 있는 1등부터 4등까지의 4명의 정보를 List<User> 의 productReceiveList 변수를 만들 때 조건을
-		// 그 productReceiveList에 파라미터값으로 총 4개를 입력해주자. 
-		// top5People.get(0), top5People.get(0), top5People.get(0), top5People.get(0) 이렇게 4개의 파라미터를 전달
-		// 그래서 그 리스트결과를 모델로 넘겨주어서 jsp 쪽에서 하나씩 그 리스트에서 이메일정보를 뽑아서 " ~님 ~이메일에서 상품 안내정보를 확인하세요"
-		
 		return "post/productView";
 		
-		
 	}
-	
-	
 	
 	
 }

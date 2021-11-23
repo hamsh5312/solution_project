@@ -67,8 +67,10 @@
 				
 				<textarea class="form-control my-3" rows="5" id="contentInput" >${post.content }</textarea>
 				
-				<div class="text-center">
-					<img src="${post.imagePath }" style="width:500px; height:300px;">
+				<div class="d-flex justify-content-around align-items-center">
+					<img src="/static/images/left.jpg"  class="left-img">
+					<img src="${post.imagePath }"  class="emotion-img">
+					<img src="/static/images/right.jpg"  class="right-img">
 				</div>
 				
 				<div class="d-flex justify-content-between my-3">
@@ -76,19 +78,23 @@
 						
 						<a href="/post/list_view" class="btn btn-info">목록으로</a>
 							
-						<c:if test="${userName ne null }">
+						<c:if test="${userName eq post.userName }">
 							<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id }">삭제</button>
 						</c:if>
+						
 					</div>
-					<c:if test="${userName ne null }">
-						<button type="button" class="btn btn-success" id="updateBtn" data-post-id="${post.id }">수정</button>
-					</c:if>
+					
+						<c:if test="${userName eq post.userName }">
+							<button type="button" class="btn btn-success" id="updateBtn" data-post-id="${post.id }">수정</button>
+						</c:if>
 				</div>
 				
 				<c:if test="${userName ne null }">
+				
 				<div class="mb-4 input-group d-flex align-items-center">
-					<input type="text" id="commentInput"class="form-control"  placeholder="댓글을 입력하세요.">
-					<div class="input-group-append">
+					<img src="/static/images/comment.jpg" class="comment-img mr-3">
+					<input type="text" id="commentInput" class="form-control mt-2"  placeholder="댓글을 입력하세요.">
+					<div class="input-group-append mt-2">
 						<button type="button" id="commentBtn"class="btn btn-info " data-post-id="${postDetail.post.id }" >댓글 작성</button>
 					</div>
 				</div>
@@ -121,10 +127,9 @@
 				</c:forEach>
 				
 				
-				
-				
+		
 			</div>
-			
+		
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />

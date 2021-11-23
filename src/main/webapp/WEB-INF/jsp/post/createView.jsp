@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,10 +33,11 @@
 					<input type="text" class="form-control col-10" id="titleInput">
 				</div>
 				<textarea class="form-control my-3" rows="7" id="contentInput"></textarea>
-				<!-- MIME text/html image/jpeg -->
+				
+				<div>지금 기분을 사진으로 표현해 보세요!</div>
 				<div class="d-flex justify-content-between my-3">
 					<input type="file" accept="image/*" id="fileInput" multiple>
-					<select name="worry" style="width:100px;">
+					<select name="worry" style="width:80px;">
 						<option value="study">공부</option>
 						<option value="exercise">운동</option>
 						<option value="food">음식</option>

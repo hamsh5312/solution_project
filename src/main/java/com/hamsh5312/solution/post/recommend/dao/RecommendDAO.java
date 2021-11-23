@@ -37,6 +37,7 @@ public interface RecommendDAO {
 			@Param("startDate") String startDate
 			, @Param("endDate") String endDate);
 	
+	
 	// 추천 삭제
 	public int deleteRecommendByCommentId(@Param("commentId") int commentId);
 	

@@ -12,8 +12,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <!-- jQuery -->
+<!-- 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+ -->
+
 
 <!-- slippry.js 추가-->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slippry/1.4.0/slippry.min.css' />
@@ -29,13 +32,17 @@
 <!-- 뽑기 설정 셋팅 -->
 <script src="https://cdn.sobekrepository.org/includes/jquery-rotate/2.2/jquery-rotate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
 <link rel="stylesheet" href="/static/css/circle.css">
   	
 <style>
+
 	*{margin: 0; padding:0; }
+	
 	.slide-wrap{
 		width: 50%; margin: 0 auto;
 	}
+	
 	/* 미디어쿼리*/
 	@media screen and (max-width: 960px) {.slide-wrap{
 		width: 70%; } }
@@ -69,23 +76,23 @@
 				</div>
 			
 			<!-- 지난달 상품 사진 올리기 -->
-			<h3 class="text-center mt-4">지난달 상품</h3>
+			<h2 class="product-title text-center mt-4">지난달 상품</h2>
 			<div>
 				<div class="d-flex justify-content-center mt-4">
 					<div>
-						<img src="/static/images/laptop.jpg" width="200" height="200">
+						<img src="/static/images/laptop.jpg" class="product" width="200" height="200">
 						<div class="text-center mt-2">
 							노트북(1)
 						</div>
 					</div>
-					<div class="ml-2">
-						<img src="/static/images/camera.jpg" width="200" height="200">
+					<div class="ml-4">
+						<img src="/static/images/camera.jpg" class="product" width="200" height="200">
 						<div class="text-center mt-2">
 							카메라(2)
 						</div>
 					</div>
-					<div class="ml-2">
-						<img src="/static/images/microphone.jpg" width="200" height="200">
+					<div class="ml-4">
+						<img src="/static/images/microphone.jpg" class="product" width="200" height="200">
 						<div class="text-center mt-2">
 							무선 마이크(3)
 						</div>
@@ -94,14 +101,14 @@
 			</div>
 			<!-- 이번 달 상품 -->
 			<div id="slide-wrap">
-				<h1 class="text-center mt-4">이번 달 상품</h1>
+				<h1 class="product-title text-center mt-4">이번 달 상품</h1>
 				<article class="d-flex justify-content-center">
 					<!-- 이미지 슬라이드 -->
 					<div class="w-50 my-2">
 						<ul id="gallery">
-							<li><a href="#slide1"><img src="/static/images/TV.jpg" height="400" alt="1등 상품(TV)"></a></li>
-							<li><a href="#slide2"><img src="/static/images/iPad.jpg" height="400" alt="2등 상품(아이패드)"></a></li>
-							<li><a href="#slide3"><img src="/static/images/AirPods.jpg" height="400" alt="3등 상품(에어팟)"></a></li>
+							<li><a href="#slide1"><img src="/static/images/TV.jpg" class="new-product" height="400" alt="1등 상품(TV)"></a></li>
+							<li><a href="#slide2"><img src="/static/images/iPad.jpg" class="new-product" height="400" alt="2등 상품(아이패드)"></a></li>
+							<li><a href="#slide3"><img src="/static/images/AirPods.jpg" class="new-product" height="400" alt="3등 상품(에어팟)"></a></li>
 						</ul>
 					</div>				
 				</article>
@@ -109,8 +116,8 @@
 				
 			<div class="d-flex justify-content-center align-items-center">
 				<div class="w-75 my-2 text-center">
-					<h2 class="pt-5">TOP 3</h2>
-					<img class="pb-3" src="/static/images/product_image.jpg" width="150" height="150">
+					<h1 class="pt-5">TOP 3</h1>
+					<img class="" src="/static/images/product_image.jpg" width="200" height="200">
 					
 					<c:forEach var="top3" items="${top3People }" varStatus="status">
 						<h2>${top3 }님 ${status.index + 1 } 등 축하드립니다.</h2>
@@ -123,11 +130,10 @@
 								<c:if test="${top5.commentCreateUserName ne top3People.get(1)}">
 									<c:if test="${top5.commentCreateUserName ne top3People.get(2)}">
 										<h5>${top5.commentCreateUserName }님 ${status.index + 1 } 등 축하드립니다.</h5>
-										
 									</c:if>
 								</c:if>
 							</c:if>
-							<!-- 4등 5등을 뽑아지는데 다른방법 없나? 다시시도 하자 -->
+							
 					</c:forEach>
 					
 					
@@ -136,8 +142,8 @@
 				
 			</section>
 				
-			<!-- 4등 상품 정보 없으면 아래꺼 안내 문구가 뜨지 않게 -->
-			<!-- 4등의 상품 정보가 있다면 상품정보를 그냥 출력하고  추가로 원판 돌리시 경고창 뜨게 -->
+			<!-- 4등 상품 정보 없으면 아래에 있는 안내 문구가 뜨지 않게 -->
+			<!-- 4등의 상품 정보가 있다면 상품정보를 그냥 출력하고 추가로 원판 돌릴 시 경고 창 뜨게 -->
 			<c:choose>
 				<c:when test="${empty dateInfo }">
 					
@@ -167,7 +173,7 @@
 						<h2 class="text-center">4등은 보너스 게임에 참여해서 추가 상품에 도전하세요!</h2>		
 					</div>
 					
-					<!-- 여기아래에 상품 -->
+					<!-- 여기 아래에 상품 -->
 					<div id="fourthProduct" class="text-center" style="font-weight:bold; font-size:40px;">
 						
 					</div>
@@ -183,10 +189,10 @@
 			</c:choose>
 			
 			
-			<!-- 4등 상품 정보 있으면 아래꺼가 나오지 않게 -->
-			<!-- 4등의 상품정보가 없다면 아래꺼로 돌려서 나오는 결과를 삽입해주고 -->
-			<!-- 아래 스크립트에서 바로아래 div 안에  태그를 삽입하는문장이 있음. -->
-		
+			<!-- 4등 상품 정보 있으면 아래 꺼가 나오지 않게 -->
+			<!-- 4등의 상품정보가 없다면 아래 거로 돌려서 나오는 결과를 삽입해 주고 -->
+			<!-- 아래 스크립트에서 바로 아래 div 안에  태그를 삽입하는 문장이 있음. -->
+			
 			
 			<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
@@ -203,8 +209,6 @@
 	
 	
 	</c:choose>
-	
-	
 	
 	
 	
@@ -460,16 +464,13 @@
 			  });
 			
 			
-			
-			
-			
+						
 			$(function() {
 						
 			  $('.box-roulette').roulette();	
 	        	
 			});
-
-			
+	
 			
 			
 		});

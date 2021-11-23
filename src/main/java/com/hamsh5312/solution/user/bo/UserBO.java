@@ -33,13 +33,16 @@ public class UserBO {
 	
 	// 아이디 중복확인
 	public boolean isDuplicateId(String loginId) {
+		
 		if(userDAO.selectCountById(loginId) == 0) {
 			return false;
 		} else {
 			return true;
 		}
 		
+//		위의 if ~ else 문을 아래와 같이 한문장으로 표현 가능 	
 		// return (userDAO.selectCountById(loginId) != 0);
+		
 	}
 	
 	// 닉네임 중복확인
