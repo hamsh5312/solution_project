@@ -92,12 +92,12 @@ header{
 	height:80px;
 }
 
-.left-img{
+#leftImage{
 	width:150px; 
 	height:150px;
 }
 
-.emotion-img{
+#emotionImage{
 	width:500px; 
 	height:300px;
 	box-shadow: 0 0 5px 5px #808080;
@@ -105,12 +105,12 @@ header{
 	
 }
 
-.right-img{
+#rightImage{
 	width:150px; 
 	height:150px;
 }
 
-.comment-img{
+#commentImage{
 	width:50px;
 	height:50px;
 }

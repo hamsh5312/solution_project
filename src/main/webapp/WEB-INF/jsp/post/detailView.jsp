@@ -69,9 +69,9 @@
 				<textarea class="form-control my-3" rows="5" id="contentInput" >${post.content }</textarea>
 				
 				<div class="d-flex justify-content-around align-items-center">
-					<img src="/static/images/left.jpg"  class="left-img">
-					<img src="${post.imagePath }"  class="emotion-img">
-					<img src="/static/images/right.jpg"  class="right-img">
+					<img src="/static/images/left.jpg"   id="leftImage" >
+					<img src="${post.imagePath }"   id="emotionImage" >
+					<img src="/static/images/right.jpg"   id="rightImage" >
 				</div>
 				
 				<div class="d-flex justify-content-between my-3">
@@ -93,7 +93,7 @@
 				<c:if test="${userName ne null }">
 				
 				<div class="mb-4 input-group d-flex align-items-center">
-					<img src="/static/images/comment.jpg" class="comment-img mr-3">
+					<img src="/static/images/comment.jpg" class="mr-3" id="commentImage" >
 					<input type="text" id="commentInput" class="form-control mt-2"  placeholder="댓글을 입력하세요.">
 					<div class="input-group-append mt-2">
 						<button type="button" id="commentBtn"class="btn btn-info " data-post-id="${postDetail.post.id }" >댓글 작성</button>
