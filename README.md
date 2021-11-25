@@ -21,7 +21,7 @@
 [고해](https://youtu.be/41a9G6G7sSM)
 
 ### :truck:  포트폴리오 <br>
-[포트폴리오](https://github.com/hamsh5312/solution_project/blob/developer/portfolio%20.pdf)
+[포트폴리오](https://github.com/hamsh5312/solution_project/blob/developer/portfolio.pdf)
 
 ### :rainbow: 고해 웹사이트 <br>
 [고해](http://13.125.235.35:8080/user/signin_view)
