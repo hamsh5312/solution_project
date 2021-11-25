@@ -18,7 +18,7 @@
 * 기본적으로 로그인 기반의 게시판 기능
 
 ### :tv: 고해 유트브 링크
-[고해](https://www.youtube.com/watch?v=2jr0PDEvJgY)
+[고해](https://youtu.be/41a9G6G7sSM)
 
 ### :truck:  포트폴리오 <br>
 [포트폴리오](https://github.com/hamsh5312/solution_project/blob/developer/portfolio%20.pdf)
