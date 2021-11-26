@@ -32,30 +32,13 @@ https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
 * 데이터 베이스, URL 설계<br>
 https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
 ### :hammer_and_pick: 주요기능 :hammer_and_pick:
-* 회원가입
+* 회원가입, 로그인
   * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
   * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
-* 로그인
-  * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
-  * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
-* 고민 쓰기
+* 고민 쓰기, 내 고민 보기, 내 찜 목록, 검색 기능, 고민 종류별 게시글 보기, 추천별 순위 기능, 상품 화면 및 보너스 게임 기능
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
-* 내 고민 보기 , 내 고민 보기 내 고민 보기 내 고민 보기 내 고민 보기 내 고민 보기 내 고민 보기
-  * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
-  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
-* 내 찜 목록
-  * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
-  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
-* 검색 기능
-  * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
-  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
-* 고민 종류별 게시글 보기
-  * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
-  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
- * 추천별 순위 기능
-  * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
-  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post) 
+
  
  
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
