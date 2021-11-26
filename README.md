@@ -35,7 +35,8 @@ https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
 * 회원가입, 로그인
   * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
   * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
-* 고민 쓰기, 내 고민 보기, 내 찜 목록, 검색 기능, 고민 종류별 게시글 보기, 추천별 순위 기능, 상품 화면 및 보너스 게임 기능
+* 고민 쓰기, 내 고민 보기, 내 찜 목록, 검색 기능, 고민 종류별 게시글 보기,
+* 추천별 순위 기능, 상품 화면 및 보너스 게임 기능
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
 
