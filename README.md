@@ -35,13 +35,12 @@ https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
 * 회원가입, 로그인
   * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
   * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
-* 고민 쓰기, 내 고민 보기, 내 찜 목록, 검색 기능, 고민 종류별 게시글 보기,
+* 고민 쓰기, 내 고민 보기, 내 찜 목록, 고민 종류별 게시글 보기,
+* 검색 기능, 페이징 기능, 
 * 추천별 순위 기능, 상품 화면 및 보너스 게임 기능
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
 
- 
- 
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
 * Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Mysql [GPLv2 or proprietary](https://www.gnu.org/licenses/gpl-3.0.html)
@@ -50,9 +49,9 @@ https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
 * Bootstrap [MIT License](https://opensource.org/licenses/MIT)
 * jQuery [MIT License](https://opensource.org/licenses/MIT)
 * 이미지 출처 : [pixabay](https://pixabay.com/ko/)
-* 
+ 
 ### 🎁 향후 계획
 * 고민 종류 옵션을 추가한 검색기능
-* 댓글의 댓글 기능
-* 댓글 여러개 축소하여 
+* 조회수 중복 방지 기능
+* 고민 등록자의 댓글 채택 기능
 * 사진 여러개 추가 기능
