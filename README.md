@@ -44,7 +44,7 @@ https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
 * 내 고민 보기
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
-  * 
+
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
 * Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Mysql [GPLv2 or proprietary](https://www.gnu.org/licenses/gpl-3.0.html)
