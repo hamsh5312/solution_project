@@ -144,7 +144,7 @@ public class PostController {
 	@GetMapping("/detail_view")
 	public String detailView(
 			@RequestParam("id") int id
-			, @RequestParam(value = "NotCount", required =false) Integer NotCount
+			, @RequestParam(value = "NotCount", required = false) Integer NotCount
 			, Model model
 			, HttpServletRequest request) {
 		
@@ -165,7 +165,7 @@ public class PostController {
 		
 		Post post = postBO.getPost(id);
 		model.addAttribute("post", post);
-			
+		
 		return "post/detailView";
 	}
 	

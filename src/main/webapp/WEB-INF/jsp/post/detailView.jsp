@@ -76,9 +76,9 @@
 				
 				<div class="d-flex justify-content-between my-3">
 					<div>
-						
+
 						<a href="/post/list_view" class="btn btn-info">목록으로</a>
-							
+						
 						<c:if test="${userName eq post.userName }">
 							<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id }">삭제</button>
 						</c:if>
