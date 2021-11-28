@@ -17,6 +17,10 @@
 * 고민을 올리고 그에 대한 의견을 나누고 추천순위를 통해 상품을 받을 수 있는 웹사이트
 * 기본적으로 로그인 기반의 게시판 기능
 
+### :family: 관련 프로젝트
+[메모장 프로젝트](https://github.com/hamsh5312/web_memo_0909) <br>
+[SNS 프로젝트](https://github.com/hamsh5312/snsProject) 
+
 ### :tv: 고해 유트브 링크
 [고해](https://youtu.be/41a9G6G7sSM)
 
