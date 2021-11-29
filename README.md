@@ -44,6 +44,12 @@ https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
 * 추천별 순위 기능, 상품 화면 및 보너스 게임 기능
   * package: [com.hamsh5312.solution.post.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post)
   * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
+* 댓글 생성
+  * package: [com.hamsh5312.solution.post.comment.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post/comment)
+  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
+* 댓글 추천
+  * package: [com.hamsh5312.solution.post.recommend.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/post/recommend)
+  * view: [/webapp/WEB-INF/jsp/post/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/post)
 
 ### :pencil2: 외부 라이브러리 라이센스 :pencil2:
 * Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
