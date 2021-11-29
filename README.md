@@ -35,7 +35,7 @@
 https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
 * 데이터 베이스, URL 설계<br>
 https://1drv.ms/x/s!Amrf518RmUGu3QKkUUpKnbPXo7D-
-### :hammer_and_pick: 주요기능 :hammer_and_pick:
+### :stars: 주요기능 :stars:
 * 회원가입, 로그인
   * package: [com.hamsh5312.solution.user.*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/java/com/hamsh5312/solution/user)
   * view: [/webapp/WEB-INF/jsp/user/*](https://github.com/hamsh5312/solution_project/tree/developer/src/main/webapp/WEB-INF/jsp/user)
