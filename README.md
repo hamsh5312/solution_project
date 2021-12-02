@@ -29,7 +29,10 @@
 
 ### :rainbow: 고해 웹사이트 <br>
 [고해](http://13.125.235.35:8080/user/signin_view)  <br>
-(테스트 ID:  test , 테스트 비밀번호:  1234)
+
+테스트 ID: test <br>
+테스트 비밀번호: 1234
+
 ### <b> :construction: 설계 :construction:</b>
 * UI 기획<br>
 https://ovenapp.io/project/mpEMjZVqrvFEEMmFPcxKRIasl3FyYBTZ#sCU9i
